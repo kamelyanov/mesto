@@ -1,0 +1,7 @@
+.edit-form {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: auto;
+  width: 750px;
+}
