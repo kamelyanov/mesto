@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 4 Практическая работа Я.Практикум <a href=https://kamelyanov.github.io/mesto/>Место</a>
 
 4 блока - Header, Profile, Elements, Footer
