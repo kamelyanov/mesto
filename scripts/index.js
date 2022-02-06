@@ -5,11 +5,11 @@ let editFormButtonGlose = editForm.querySelector('.edit-form__glose')
 let editFormOpen = function () {
   editForm.classList.remove('edit-form');
   editForm.classList.add('edit-form_open');
-  console.log('jnrhskb');
 };
 
 let editFormGlose = function () {
   editForm.classList.remove('edit-form_open');
+  editForm.classList.add('edit-form');
 };
 
 editFormButtonOpen.addEventListener('click', editFormOpen); 
