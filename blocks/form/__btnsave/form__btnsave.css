@@ -1,4 +1,4 @@
-.form__submit-btn-save {
+.form__btnsave {
   color: #fff;
   width: 358px;
   height: 50px;
@@ -12,7 +12,7 @@
   transition: opacity 0.2s;
 }
 
-.form__submit-btn-save:hover {
+.form__btnsave:hover {
   opacity: 0.8;
 }
 
