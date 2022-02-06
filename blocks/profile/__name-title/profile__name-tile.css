@@ -1,7 +1,15 @@
 .profile__name-title {
-    font-size: 42px;
-    line-height: 48px;
-    font-weight: 500;
-    margin: 0;
-    margin-top: 3px;
+  font-size: 42px;
+  line-height: 48px;
+  font-weight: 500;
+  margin: 0;
+}
+
+@media (max-width: 540px) {
+  .profile__name-title {
+    margin-top: 25px;
+    margin-left: 26px;
+    font-size: 27px;
+    line-height: 33px;
+  }
 }

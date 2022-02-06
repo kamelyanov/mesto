@@ -1,0 +1,19 @@
+.form__submit-btn-save {
+  color: #fff;
+  width: 358px;
+  height: 50px;
+  font-size: 18px;
+  line-height: 50px;
+  background-color: #000;
+  margin: 48px auto 0;
+  text-align: center;
+  cursor: pointer;
+  border-radius: 2px;
+  transition: opacity 0.2s;
+}
+
+.form__submit-btn-save:hover {
+  opacity: 0.8;
+}
+
+

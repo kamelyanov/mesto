@@ -1,3 +1,9 @@
 .edit-form_open {
-  display: flex;
+  position: absolute;
+  top: 195px;
+  left: calc((100% - 430px) / 2);
+  width: 430px;
+  height: 330px;
+  background-color: #fff;
+  border-radius: 10px;
 }
