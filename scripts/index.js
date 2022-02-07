@@ -18,8 +18,8 @@ editFormButtonGlose.addEventListener('click', editFormGlose);
 let addProfileName = document.querySelector('.profile__info-name')
 
 function addName() {
-  let InputProfileName = document.querySelector(`.input__name`);
-  let InputProfileNameDescription = document.querySelector(`.input__description`);
+  let InputProfileName = document.querySelector(`.edit-form__name`);
+  let InputProfileNameDescription = document.querySelector(`.edit-form__description`);
 
   addProfileName.innerHTML = `
   <h1 class="profile__name-title">${InputProfileName.value}</h1>
@@ -27,5 +27,5 @@ function addName() {
   `
 }
 
-let SaveFormName = document.querySelector(`.form__btnsave`)
+let SaveFormName = document.querySelector(`.edit-form__btnsave`)
 SaveFormName.addEventListener('click', addName) 

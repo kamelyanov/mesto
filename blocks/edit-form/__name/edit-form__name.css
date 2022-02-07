@@ -1,4 +1,4 @@
-.input__name {
+.edit-form__name {
   margin-top: 46px;
   margin-left: 36px;
   border: none;
@@ -11,6 +11,7 @@
   padding-bottom: 9px;
 }
 
-.input__name:focus {
+.edit-form__name:focus {
   outline: none;
 }
+

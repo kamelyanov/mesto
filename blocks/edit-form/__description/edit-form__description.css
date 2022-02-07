@@ -1,4 +1,4 @@
-.input__description {
+.edit-form__description {
   margin-top: 31px;
   margin-left: 36px;
   border: none;
@@ -11,6 +11,6 @@
   padding-bottom: 8px;
 }
 
-.input__description:focus {
+.edit-form__description:focus {
   outline: none;
 }
