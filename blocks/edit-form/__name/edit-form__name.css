@@ -15,3 +15,10 @@
   outline: none;
 }
 
+@media (max-width: 540px) {
+  .edit-form__name {
+    margin-top: 75px;
+    margin-left: 22px;
+    width: 238px;
+  }
+}

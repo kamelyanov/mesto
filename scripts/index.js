@@ -1,15 +1,19 @@
 let editFormButtonOpen = document.querySelector('.profile__name-edit')
 let editForm = document.querySelector('.edit-form')
 let editFormButtonGlose = editForm.querySelector('.edit-form__glose')
+let pagecover = document.querySelector('.page')
+
 
 let editFormOpen = function () {
   editForm.classList.remove('edit-form');
   editForm.classList.add('edit-form_open');
+  pagecover.classList.add('page_cover')
 };
 
 let editFormGlose = function () {
   editForm.classList.remove('edit-form_open');
   editForm.classList.add('edit-form');
+  pagecover.classList.remove('page_cover');
 };
 
 editFormButtonOpen.addEventListener('click', editFormOpen); 

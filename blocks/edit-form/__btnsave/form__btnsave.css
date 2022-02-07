@@ -16,4 +16,13 @@
   opacity: 0.8;
 }
 
+@media (max-width: 540px) {
+  .edit-form__btnsave {
+    width: 238px;
+    height: 46px;
+    font-size: 14px;
+    line-height: 46px;
+    margin: 43px auto 0;
+  }
+}
 
