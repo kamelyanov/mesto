@@ -1,35 +1,35 @@
-let editFormButtonOpen = document.querySelector('.profile__name-edit')
+let editFormButtonOpen = document.querySelector('.profile__name-edit') 
 let editForm = document.querySelector('.edit-form')
 let editFormButtonGlose = editForm.querySelector('.edit-form__glose')
-let pagecover = document.querySelector('.page')
-
+let pagecover = document.querySelector('.page__cover')
+let inputProfileName = document.querySelector('.edit-form__input-name');
+let inputProfileNameDescription = document.querySelector('.edit-form__input-description');
+let addProfileName = document.querySelector('.profile__name-title')
+let addProfileDescription = document.querySelector('.profile__info-description')
 
 let editFormOpen = function () {
-  editForm.classList.remove('edit-form');
-  editForm.classList.add('edit-form_open');
-  pagecover.classList.add('page_cover')
+  editForm.classList.add('edit-form_open'); 
+  pagecover.classList.add('page__cover_open') //делает прозрачным слой над страницей
 };
 
 let editFormGlose = function () {
   editForm.classList.remove('edit-form_open');
-  editForm.classList.add('edit-form');
-  pagecover.classList.remove('page_cover');
+  pagecover.classList.remove('page__cover_open');
 };
 
 editFormButtonOpen.addEventListener('click', editFormOpen); 
 editFormButtonGlose.addEventListener('click', editFormGlose);
 
-let addProfileName = document.querySelector('.profile__info-name')
+let saveFormName = document.querySelector('.form');
 
-function addName() {
-  let InputProfileName = document.querySelector(`.edit-form__name`);
-  let InputProfileNameDescription = document.querySelector(`.edit-form__description`);
-
+function addName(evt) {
+  evt.preventDefault();
   addProfileName.innerHTML = `
-  <h1 class="profile__name-title">${InputProfileName.value}</h1>
-  <p class="profile__info-description">${InputProfileNameDescription.value}</p>
+  ${inputProfileName.value}
+  `
+  addProfileDescription.innerHTML = `
+  ${inputProfileNameDescription.value}
   `
 }
 
-let SaveFormName = document.querySelector(`.edit-form__btnsave`)
-SaveFormName.addEventListener('click', addName) 
+saveFormName.addEventListener('submit', addName) 

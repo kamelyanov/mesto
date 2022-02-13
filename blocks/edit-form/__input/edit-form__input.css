@@ -1,8 +1,8 @@
-.edit-form__name {
-  margin-top: 46px;
+.edit-form__input {
+  margin-top: 30px;
   margin-left: 36px;
   border: none;
-  border-bottom: 1px solid #000;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.2);
   width: 358px;
   line-height: 17px;
   font-size: 14px;
@@ -11,13 +11,13 @@
   padding-bottom: 9px;
 }
 
-.edit-form__name:focus {
+.edit-form__input:focus {
   outline: none;
 }
 
 @media (max-width: 540px) {
-  .edit-form__name {
-    margin-top: 75px;
+  .edit-form__input {
+    margin-top: 30px;
     margin-left: 22px;
     width: 238px;
   }

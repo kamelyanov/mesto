@@ -5,10 +5,9 @@
   margin: 0;
 }
 
-@media (max-width: 540px) {
+@media (max-width: 680px) {
   .profile__name-title {
     margin-top: 25px;
-    margin-left: 26px;
     font-size: 27px;
     line-height: 33px;
   }

@@ -6,7 +6,7 @@
   margin-top: 9px;
 }
 
-@media (max-width: 540px) {
+@media (max-width: 680px) {
   .profile__info-description {
     font-size: 14px;
     line-height: 17px;

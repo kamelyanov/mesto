@@ -1,3 +1,20 @@
 .edit-form {
   display: none;
+  font-family: Inter, Arial, sans-serif;
+  margin: 0;
+  position: fixed;
+  top: 195px;
+  left: calc((100% - 430px) / 2);
+  width: 430px;
+  background-color: #fff;
+  border-radius: 10px;
+  z-index: 2;
+}
+
+@media (max-width: 540px) {
+  .edit-form {
+    width: 282px;
+    top: 123px;
+    left: calc((100% - 282px) / 2);
+   }
 }
