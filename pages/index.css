@@ -19,10 +19,12 @@
 @import url(../blocks/card/__info/card__info.css);
 @import url(../blocks/card/__photo/card__photo.css);
 @import url(../blocks/card/__like/card__like.css);
+@import url(../blocks/card/__delete/card__delete.css);
 @import url(../blocks/edit-form/edit-form.css);
+@import url(../blocks/add-card/add_card.css);
+@import url(../blocks/popup/-opened/popup-opened.css);
 @import url(../blocks/edit-form/__title/edit-form__title.css);
 @import url(../blocks/edit-form/__input/edit-form__input.css);
-@import url(../blocks/edit-form/_open/edit-form_open.css);
 @import url(../blocks/edit-form/__btn-save/edit-form__btn-save.css);
-@import url(../blocks/edit-form/__glose/edit-form__glose.css);
+@import url(../blocks/popup/__glose/popup__button-glose.css);
 @import url(../blocks/footer/footer.css);

@@ -1,4 +1,4 @@
-.edit-form__glose {
+.popup__button-glose {
   background-image: url(../../../images/Close-icon.svg);
   background-repeat: no-repeat;
   background-position: center;
@@ -13,12 +13,12 @@
   transition: opacity 0.2s;
 }
 
-.edit-form__glose:hover {
+.popup__button-glose:hover {
   opacity: 0.6;
 }
 
 @media (max-width: 540px) {
-  .edit-form__glose {
+  .popup__button-glose {
     width: 20px;
     height: 20px;
     bottom: 335px;
