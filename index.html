@@ -32,14 +32,16 @@
 
       </section>
       <section class="cards">
-        <article class="card">
+        <!-- <article class="card">
           <img src="./images/Putorana.jpg" alt="Путорана" class="card__photo">
           <div class="card__info">
             <h2 class="card__title">Путорана</h2>
             <button class="card__like" type="button"></button>
           </div>
           <button class="card__delete" type="button"></button>
-        </article>
+        </article> -->
+      
+
       </section>
 
     </main>
@@ -52,25 +54,37 @@
 
   <article class="edit-form">
     <h2 class="edit-form__title">Редактировать профиль</h2>
-    <form class="form">
+    <form class="form form__edit-form">
       <input type="text" name="name" placeholder="Имя" class="edit-form__input edit-form__input_type_name">
       <input type="text" name="description" placeholder="Профессия"
         class="edit-form__input edit-form__input_type_description">
-      <button class="edit-form__btn-save" type="submit">Сохранить</button>
+      <button class="popup__btn-save " type="submit">Сохранить</button>
     </form>
     <button class="popup__button-glose edit-form__button-glose" type="button"></button>
   </article>
  
   <article class="add-card"> 
     <h2 class="edit-form__title">Новое Место</h2>
-    <form class="form">
-      <input type="text" name="namePhoto" placeholder="Название" class="edit-form__input edit-form__input_type_namePhoto">
+    <form class="form form__add-card">
+      <input type="text" name="namePhoto" placeholder="Название" class="edit-form__input add-card__input_type_namePhoto">
       <input type="text" name="linkPhoto" placeholder="Ссылка на картинку"
-        class="edit-form__input edit-form__input_type_linkPhoto">
-      <button class="edit-form__btn-save" type="submit">Создать</button>
+        class="edit-form__input add-card__input_type_linkPhoto">
+      <button class="popup__btn-save " type="submit">Создать</button>
     </form>
     <button class="popup__button-glose add-card__button-glose" type="button"></button>
   </article>
+  
+  <template id="card-template">
+    <article class="card">
+      <img src="" alt="" class="card__photo">
+      <div class="card__info">
+        <h2 class="card__title"></h2>
+        <button class="card__like" type="button"></button>
+      </div>
+      <button class="card__delete" type="button"></button>
+    </article>
+  </template>
+  
   <script src="./scripts/index.js"></script>
 
 
