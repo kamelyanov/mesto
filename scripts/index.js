@@ -36,7 +36,7 @@ const editForm = document.querySelector('.edit-form');
 const editFormButtonGlose = document.querySelector('.edit-form__button-glose');
 const inputProfileName = document.querySelector('.edit-form__input_type_name');
 const inputProfileNameDescription = document.querySelector('.edit-form__input_type_description');
-const saveFormName = document.querySelector('.form__edit-form');
+const saveFormName = document.querySelector('.edit-form__form');
 
 // 2 попап 
 const addCard = document.querySelector('.add-card');
