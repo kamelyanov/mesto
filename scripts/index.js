@@ -41,9 +41,9 @@ const saveFormName = document.querySelector('.edit-form__form');
 // 2 попап 
 const addCard = document.querySelector('.add-card');
 const addCardButtonGlose = document.querySelector('.add-card__button-glose');
-const inputNameCard = document.querySelector('.add-card__input_type_namePhoto');
-const inputLinkCardPhoto = document.querySelector('.add-card__input_type_linkPhoto');
-const addCardForm = document.querySelector('.form__add-card');
+const inputNameCard = document.querySelector('.add-card__input-type-namePhoto');
+const inputLinkCardPhoto = document.querySelector('.add-card__input-type-linkPhoto');
+const addCardForm = document.querySelector('.add-card__form');
 
 //3 попап 
 const imagePopup = document.querySelector('.image-popup');
