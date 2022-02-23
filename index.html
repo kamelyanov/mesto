@@ -29,19 +29,9 @@
           <img class="profile__add-button-icon" src="./images/add-button.svg" alt="Добавить Профиль" />
         </button>
 
-
       </section>
-      <section class="cards">
-        <!-- <article class="card">
-          <img src="./images/Putorana.jpg" alt="Путорана" class="card__photo">
-          <div class="card__info">
-            <h2 class="card__title">Путорана</h2>
-            <button class="card__like" type="button"></button>
-          </div>
-          <button class="card__delete" type="button"></button>
-        </article> -->
-      
 
+      <section class="cards">
       </section>
 
     </main>
@@ -62,34 +52,38 @@
     </form>
     <button class="popup__button-glose edit-form__button-glose" type="button"></button>
   </article>
- 
-  <article class="add-card"> 
+
+  <article class="add-card">
+    <button class="popup__button-glose add-card__button-glose" type="button"></button>
     <h2 class="edit-form__title">Новое Место</h2>
     <form class="form form__add-card">
-      <input type="text" name="namePhoto" placeholder="Название" class="edit-form__input add-card__input_type_namePhoto">
+      <input type="text" name="namePhoto" placeholder="Название"
+        class="edit-form__input add-card__input_type_namePhoto">
       <input type="text" name="linkPhoto" placeholder="Ссылка на картинку"
         class="edit-form__input add-card__input_type_linkPhoto">
       <button class="popup__btn-save " type="submit">Создать</button>
     </form>
-    <button class="popup__button-glose add-card__button-glose" type="button"></button>
   </article>
-  
+
+  <article class="image-popup">
+    <img src="" alt="" class="image-popup__photo">
+    <p class="image-popup__title"></p>
+    <button class="popup__button-glose image-popup__button-glose" type="button"></button>
+  </article>
+
   <template id="card-template">
     <article class="card">
       <img src="" alt="" class="card__photo">
       <div class="card__info">
         <h2 class="card__title"></h2>
-        <button class="card__like" type="button"></button>
+        <button type="button" class="card__like"></button>
       </div>
-      <button class="card__delete" type="button"></button>
+      <button type="button" class="card__delete"></button>
     </article>
   </template>
-  
+
   <script src="./scripts/index.js"></script>
-
-
 
 </body>
 
 </html>
-

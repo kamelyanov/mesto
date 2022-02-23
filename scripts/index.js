@@ -45,37 +45,16 @@ const inputNameCard = document.querySelector('.add-card__input_type_namePhoto');
 const inputLinkCardPhoto = document.querySelector('.add-card__input_type_linkPhoto');
 const addCardForm = document.querySelector('.form__add-card');
 
+//3 попап 
+const imagePopup = document.querySelector('.image-popup');
+const photoInPopup = imagePopup.querySelector('.image-popup__photo');
+const imagePopupTitle = imagePopup.querySelector('.image-popup__title');
+const imagePopupBtnClose = imagePopup.querySelector('.image-popup__button-glose');
+
+
 // card
 const templateCard = document.querySelector('#card-template').content;
 const cardsContainer = document.querySelector('.cards');
-
-
-
-const createNewCard = function (item) {
-  const { name, link } = item; 
-  // const name = card.name; 
-  // const link = card.link; 
-  const card = templateCard.cloneNode(true);
-  const cardImage = card.querySelector('.card__photo');
-  cardImage.src = link;
-  cardImage.alt = name;
-  const cardTitle = card.querySelector('.card__title');
-  cardTitle.textContent = name; 
-// в карточке найти лайк и иконку удаления и навесить обработчики
-// на картинку навесить обработчик открытия попапа с большой картинкой
-  return card;
-}
-
-const renderCards = function(data) {
-  data.forEach(item => cardsContainer.append(createNewCard(item)));
-} 
-
-
-function copyInfo() {  //заполнение имени и профессии из уже введенных
-  inputProfileName.value = addProfileName.textContent;  //перенесли текст из уже введенного на страницы в поле ввода  
-  inputProfileNameDescription.value = addProfileDescription.textContent; //то же  
-  console.log('вызвали copyinfo')
-}
 
 const openPopup = function (popup) {
   popup.classList.add('popup-opened');
@@ -87,14 +66,70 @@ const closePopup = function (popup) {
   pagecover.classList.remove('page__cover_open')
 }
 
+const cardLiked = function (evt) {
+  console.log('нажали лайк', evt.target);
+  evt.target.classList.toggle('card__like_active');
+}
+
+const cardDelete = function (evt) {
+  console.dir(evt.target);
+  const cardElement = evt.target.closest('.card');
+  cardElement.remove();
+}
+
+const openPopupImage = function (evt) {
+  photoInPopup.src = evt.target.src;
+  photoInPopup.alt = evt.target.alt;
+  imagePopupTitle.textContent = evt.target.alt;
+  openPopup(imagePopup);
+}
+
+const closePopupImage = function() {
+  console.log('закрыли');
+  closePopup(imagePopup);
+}
+
+const createNewCard = function (item) {
+  const { name, link } = item; 
+  // const name = card.name; 
+  // const link = card.link; 
+  const card = templateCard.cloneNode(true);
+
+  const cardImage = card.querySelector('.card__photo');
+  cardImage.addEventListener('click', openPopupImage); 
+  cardImage.src = link;
+  cardImage.alt = name;
+
+  const cardTitle = card.querySelector('.card__title');
+  cardTitle.textContent = name; 
+
+  const cardLike = card.querySelector('.card__like');
+  cardLike.addEventListener('click', cardLiked); 
+
+  const cardDeleteButton = card.querySelector('.card__delete'); 
+  cardDeleteButton.addEventListener('click', cardDelete); 
+  
+  return card;
+}
+
+const renderCards = function(data) {
+  data.forEach(item => cardsContainer.append(createNewCard(item)));
+} 
+
+function copyInfo() {  //заполнение имени и профессии из уже введенных
+  inputProfileName.value = addProfileName.textContent;  //перенесли текст из уже введенного на страницы в поле ввода  
+  inputProfileNameDescription.value = addProfileDescription.textContent; //то же  
+  console.log('вызвали copyinfo')
+}
+
 const editFormOpen = function () {
   openPopup(editForm);
   copyInfo();
-};
+}
 
 const editFormClose = function () {
   closePopup(editForm);
-};
+}
 
 const addCardOpen = function () {
   openPopup(addCard);
@@ -117,9 +152,6 @@ const addNewCard = function(evt) {
 
 addCardForm.addEventListener('submit', addNewCard); //вызвывает функцию которая добавляет новую карточку, очищает поля и закрыавет попап
 
-//
-
-
 const addCardClose = function () {
   closePopup(addCard);
 };
@@ -138,32 +170,8 @@ editFormButtonGlose.addEventListener('click', editFormClose);
 addNewCardButton.addEventListener('click', addCardOpen);
 addCardButtonGlose.addEventListener('click', addCardClose);
 
-renderCards(initialCards);
 
+imagePopupBtnClose.addEventListener('click', closePopupImage);
 
+renderCards(initialCards); 
 
-
-// const cardElementTemplate = document.querySelector('#card-template'); // нашли template секцию 
-// const cardElement = cardElementTemplate.content.querySelector('.card');  // нашли карточку в template секции
-// // находим элементы в карточке
-// const cardPhoto = cardElement.querySelector('.card__photo');
-// const cardInfo = cardElement.querySelector('.card__info');
-// const cardTitle = cardInfo.querySelector('.card__title');
-// const cardLike = cardInfo.querySelector('.card__like');
-// const cardDeleteButton = cardElement.querySelector('.card__delete');
-
-// function renderCard (name, link) {
-//   let cardCopy = cardElement.cloneNode(true); // клонировали карточку card
-//   cardTitle.textContent = 'dfgdfg';
-//   cardPhoto.src = initialCards.link;
-//   cardPhoto.alt = initialCards.name;
-//   cardElementTemplate.append(cardCopy); // вставили копию карточки card в template секцию
-//   console.log('отрисовали карточку');
-// }
-// renderCard()
-
-// initialCards.forEach(function(element){
-//   console.log(initialCards.name.textContent + '.');
-// });
-
-// console.log(initialCards.name.textContent + '.');

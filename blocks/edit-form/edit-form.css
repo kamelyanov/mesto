@@ -1,5 +1,6 @@
 .edit-form {
-  display: none;
+  visibility: hidden;
+  opacity: 0;
   font-family: Inter, Arial, sans-serif;
   margin: 0;
   position: fixed;

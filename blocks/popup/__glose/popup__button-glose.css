@@ -6,9 +6,9 @@
   border: none;
   width: 32px;
   height: 32px;
-  position: relative;
-  bottom: 334px;
-  left: 439px;
+  position: absolute;
+  right: -40px;
+  top: -40px;
   cursor: pointer;
   transition: opacity 0.2s;
 }
@@ -21,7 +21,7 @@
   .popup__button-glose {
     width: 20px;
     height: 20px;
-    bottom: 335px;
-    left: 263px;
+    top: -36px;
+    right: 0px;
   }
 }
