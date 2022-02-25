@@ -30,23 +30,23 @@ const addProfileDescription = document.querySelector('.profile__info-description
 const addNewCardButton = document.querySelector('.profile__add-button');
 const editFormButtonOpen = document.querySelector('.profile__name-edit');
 
-const pagecover = document.querySelector('.page__cover');
 // 1 попап 
-const editForm = document.querySelector('.edit-form');
+const editForm = document.querySelector('.edit-form-popup');
 const editFormButtonGlose = document.querySelector('.edit-form__button-glose');
 const inputProfileName = document.querySelector('.edit-form__input_type_name');
 const inputProfileNameDescription = document.querySelector('.edit-form__input_type_description');
 const saveFormName = document.querySelector('.edit-form__form');
 
 // 2 попап 
-const addCard = document.querySelector('.add-card');
+const addCard = document.querySelector('.add-card-popup');
 const addCardButtonGlose = document.querySelector('.add-card__button-glose');
 const inputNameCard = document.querySelector('.add-card__input-type-namePhoto');
 const inputLinkCardPhoto = document.querySelector('.add-card__input-type-linkPhoto');
 const addCardForm = document.querySelector('.add-card__form');
+const saveNewCard = document.querySelector('.popup__btn-save-add-card');
 
 //3 попап 
-const imagePopup = document.querySelector('.image-popup');
+const imagePopup = document.querySelector('.image-popup-view');
 const photoInPopup = imagePopup.querySelector('.image-popup__photo');
 const imagePopupTitle = imagePopup.querySelector('.image-popup__title');
 const imagePopupBtnClose = imagePopup.querySelector('.image-popup__button-glose');
@@ -58,20 +58,18 @@ const cardsContainer = document.querySelector('.cards');
 
 const openPopup = function (popup) {
   popup.classList.add('popup-opened');
-  pagecover.classList.add('page__cover_open') //делает прозрачным слой над страницей
 }
 
 const closePopup = function (popup) {
   popup.classList.remove('popup-opened');
-  pagecover.classList.remove('page__cover_open')
 }
 
-const cardLiked = function (evt) {
+const toggleLikes = function (evt) {
   console.log('нажали лайк', evt.target);
   evt.target.classList.toggle('card__like_active');
 }
 
-const cardDelete = function (evt) {
+const deleteCard = function (evt) {
   console.dir(evt.target);
   const cardElement = evt.target.closest('.card');
   cardElement.remove();
@@ -104,16 +102,17 @@ const createNewCard = function (item) {
   cardTitle.textContent = name; 
 
   const cardLike = card.querySelector('.card__like');
-  cardLike.addEventListener('click', cardLiked); 
+  cardLike.addEventListener('click', toggleLikes); 
 
   const cardDeleteButton = card.querySelector('.card__delete'); 
-  cardDeleteButton.addEventListener('click', cardDelete); 
+  cardDeleteButton.addEventListener('click', deleteCard); 
   
   return card;
 }
 
 const renderCards = function(data) {
   data.forEach(item => cardsContainer.append(createNewCard(item)));
+  closePopup(addCard);
 } 
 
 function copyInfo() {  //заполнение имени и профессии из уже введенных
@@ -127,11 +126,11 @@ const editFormOpen = function () {
   copyInfo();
 }
 
-const editFormClose = function () {
+const closeEditForm = function () {
   closePopup(editForm);
 }
 
-const addCardOpen = function () {
+const openAddCard = function () {
   openPopup(addCard);
   console.log('кнопка добавить карточку работает');
 }
@@ -147,29 +146,31 @@ const addNewCard = function(evt) {
   // }
   // const temp = createNewCard(obj); 
   // console.log(temp);
-  cardsContainer.prepend(createNewCard({name: inputNameCard.value, link: inputLinkCardPhoto.value}))
+  cardsContainer.prepend(createNewCard({name: inputNameCard.value, link: inputLinkCardPhoto.value}));
+  // inputNameCard.value = '';
+  // inputLinkCardPhoto.value = '';
+  console.log('добавили карточку');
+  closeAddCard();
 }
 
-addCardForm.addEventListener('submit', addNewCard); //вызвывает функцию которая добавляет новую карточку, очищает поля и закрыавет попап
-
-const addCardClose = function () {
+const closeAddCard = function () {
   closePopup(addCard);
 };
 
-function addName(evt) {
+function handleProfileFormSubmit(evt) {
   evt.preventDefault();
   addProfileName.textContent = inputProfileName.value;
   addProfileDescription.textContent = inputProfileNameDescription.value;
-  editFormClose();
+  closeEditForm();
 }
 
-saveFormName.addEventListener('submit', addName);
+saveFormName.addEventListener('submit', handleProfileFormSubmit);
 editFormButtonOpen.addEventListener('click', editFormOpen);
-editFormButtonGlose.addEventListener('click', editFormClose);
+editFormButtonGlose.addEventListener('click', closeEditForm);
 
-addNewCardButton.addEventListener('click', addCardOpen);
-addCardButtonGlose.addEventListener('click', addCardClose);
-
+addNewCardButton.addEventListener('click', openAddCard);
+addCardButtonGlose.addEventListener('click', closeAddCard);
+addCardForm.addEventListener('submit', addNewCard); //вызвывает функцию которая добавляет новую карточку, очищает поля и закрыавет попап
 
 imagePopupBtnClose.addEventListener('click', closePopupImage);
 

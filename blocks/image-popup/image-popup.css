@@ -1,6 +1,4 @@
 .image-popup {
-  visibility: hidden;
-  opacity: 0;
   margin: 0;
   position: fixed;
   top: 50%;

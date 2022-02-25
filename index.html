@@ -42,33 +42,39 @@
     <div class="page__cover"></div>
   </div>
 
-  <article class="edit-form popup">
-    <h2 class="edit-form__title">Редактировать профиль</h2>
-    <form class="form edit-form__form">
-      <input type="text" name="name" placeholder="Имя" class="edit-form__input edit-form__input_type_name">
-      <input type="text" name="description" placeholder="Профессия"
-        class="edit-form__input edit-form__input_type_description">
-      <button class="popup__btn-save " type="submit">Сохранить</button>
-    </form>
-    <button class="popup__button-glose edit-form__button-glose" type="button"></button>
+  <article class="popup edit-form-popup">
+    <div class="edit-form">
+      <h2 class="edit-form__title">Редактировать профиль</h2>
+      <form class="form edit-form__form">
+        <input type="text" name="name" placeholder="Имя" class="edit-form__input edit-form__input_type_name">
+        <input type="text" name="description" placeholder="Профессия"
+          class="edit-form__input edit-form__input_type_description">
+        <button class="popup__btn-save " type="submit">Сохранить</button>
+      </form>
+      <button class="popup__button-glose edit-form__button-glose" type="button"></button>
+    </div>
   </article>
 
-  <article class="edit-form add-card popup">
-    <button class="popup__button-glose add-card__button-glose" type="button"></button>
-    <h2 class="edit-form__title">Новое Место</h2>
-    <form class="form add-card__form">
-      <input type="text" name="namePhoto" placeholder="Название"
-        class="edit-form__input add-card__input-type-namePhoto">
-      <input type="text" name="linkPhoto" placeholder="Ссылка на картинку"
-        class="edit-form__input add-card__input-type-linkPhoto">
-      <button class="popup__btn-save " type="submit">Создать</button>
-    </form>
+  <article class="popup add-card-popup ">
+    <div class="add-card edit-form">
+      <button class="popup__button-glose add-card__button-glose" type="button"></button>
+      <h2 class="edit-form__title">Новое Место</h2>
+      <form class="form add-card__form">
+        <input type="text" name="namePhoto" placeholder="Название"
+          class="edit-form__input add-card__input-type-namePhoto">
+        <input type="text" name="linkPhoto" placeholder="Ссылка на картинку"
+          class="edit-form__input add-card__input-type-linkPhoto">
+        <button class="popup__btn-save popup__btn-save-add-card" type="submit">Создать</button>
+      </form>
+    </div>
   </article>
 
-  <article class="image-popup popup">
-    <img src="#" alt="" class="image-popup__photo">
-    <p class="image-popup__title"></p>
-    <button class="popup__button-glose image-popup__button-glose" type="button"></button>
+  <article class="image-popup-view popup">
+    <div class="image-popup">
+      <img src="#" alt="" class="image-popup__photo">
+      <p class="image-popup__title"></p>
+      <button class="popup__button-glose image-popup__button-glose" type="button"></button>
+    </div>
   </article>
 
   <template id="card-template">
