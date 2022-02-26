@@ -65,12 +65,10 @@ const closePopup = function (popup) {
 }
 
 const toggleLikes = function (evt) {
-  console.log('нажали лайк', evt.target);
   evt.target.classList.toggle('card__like_active');
 }
 
 const deleteCard = function (evt) {
-  console.dir(evt.target);
   const cardElement = evt.target.closest('.card');
   cardElement.remove();
 }
@@ -83,14 +81,11 @@ const openPopupImage = function (evt) {
 }
 
 const closePopupImage = function() {
-  console.log('закрыли');
   closePopup(imagePopup);
 }
 
 const createNewCard = function (item) {
   const { name, link } = item; 
-  // const name = card.name; 
-  // const link = card.link; 
   const card = templateCard.cloneNode(true);
 
   const cardImage = card.querySelector('.card__photo');
@@ -118,10 +113,9 @@ const renderCards = function(data) {
 function copyInfo() {  //заполнение имени и профессии из уже введенных
   inputProfileName.value = addProfileName.textContent;  //перенесли текст из уже введенного на страницы в поле ввода  
   inputProfileNameDescription.value = addProfileDescription.textContent; //то же  
-  console.log('вызвали copyinfo')
 }
 
-const editFormOpen = function () {
+const openProfileForm = function () {
   openPopup(editForm);
   copyInfo();
 }
@@ -132,24 +126,14 @@ const closeEditForm = function () {
 
 const openAddCard = function () {
   openPopup(addCard);
-  console.log('кнопка добавить карточку работает');
 }
 //создали объекn  из ввведенных в поппапе данных - 
 //вызвали создание карточки с этмими данными, 
 // добавили карточку в начало контейнера с карточками
 const addNewCard = function(evt) {
   evt.preventDefault();
-  // console.log(inputNameCard.value,  inputLinkCardPhoto.value);
-  // const obj = {
-  //   name: inputNameCard.value,
-  //   link: inputLinkCardPhoto.value
-  // }
-  // const temp = createNewCard(obj); 
-  // console.log(temp);
   cardsContainer.prepend(createNewCard({name: inputNameCard.value, link: inputLinkCardPhoto.value}));
-  // inputNameCard.value = '';
-  // inputLinkCardPhoto.value = '';
-  console.log('добавили карточку');
+  addCardForm.reset();
   closeAddCard();
 }
 
@@ -165,12 +149,12 @@ function handleProfileFormSubmit(evt) {
 }
 
 saveFormName.addEventListener('submit', handleProfileFormSubmit);
-editFormButtonOpen.addEventListener('click', editFormOpen);
+editFormButtonOpen.addEventListener('click', openProfileForm);
 editFormButtonGlose.addEventListener('click', closeEditForm);
 
 addNewCardButton.addEventListener('click', openAddCard);
 addCardButtonGlose.addEventListener('click', closeAddCard);
-addCardForm.addEventListener('submit', addNewCard); //вызвывает функцию которая добавляет новую карточку, очищает поля и закрыавет попап
+addCardForm.addEventListener('submit', addNewCard);
 
 imagePopupBtnClose.addEventListener('click', closePopupImage);
 
