@@ -160,3 +160,55 @@ imagePopupBtnClose.addEventListener('click', closePopupImage);
 
 renderCards(initialCards); 
 
+
+const showError = (formElement, inputElement, errorMessage) => {
+  const errorElement = formElement.closest(".edit-form").querySelector('.edit-form__input-error');
+  errorElement.textContent = errorMessage;
+  errorElement.classList.add('.edit-form__input-error_active')
+}
+
+const hideError = (formElement, inputElement) => {
+  const errorElement = inputElement.closest(".edit-form").querySelector('.edit-form__input-error');
+  errorElement.textContent = '';
+  errorElement.classList.remove('.edit-form__input-error_active')
+}
+
+
+const checkValidity = (formElement, inputElement) => {
+  console.log(inputElement.validity);
+  const isInputNotValid = !inputElement.validity.valid;
+  if (isInputNotValid) {
+    const errorMessage = inputElement.validationMessage;
+    showError(formElement, inputElement, errorMessage);
+  } else {
+    hideError(formElement, inputElement);
+  }
+}
+
+const sentEventListeners = (formElement) => {
+  const inputList = formElement.querySelectorAll('.edit-form__input');
+  inputList.forEach((inputElement) => {
+  inputElement.addEventListener('input', (event) => {
+    console.log(event.target.name, event.target.value);
+    checkValidity(formElement,inputElement);
+  });
+ });
+}
+
+const enableValidation = () => {
+  const formList = Array.from(document.querySelectorAll('.form'));
+
+  formList.forEach((formElement) => {
+    formElement.addEventListener('submit', (event) => {
+      event.preventDefault(); 
+    });
+    sentEventListeners(formElement);
+  });
+};
+enableValidation();
+
+const toggleButtonState  /*проверяет все ли формы волидны - список всем форм(инпутлист) и сама кнопка
+если форма имеет хотя бы один инпут, который не валидный, 
+const hasInvaliDInut = true; 
+добавляем кнопке класс активный, 
+иначе удаляем, класс и делаем кнопку активной) 
