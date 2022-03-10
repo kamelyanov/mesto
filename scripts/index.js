@@ -23,7 +23,7 @@ const initialCards = [
     name: 'Байкал',
     link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
   }
-]; 
+];
 
 const addProfileName = document.querySelector('.profile__name-title');
 const addProfileDescription = document.querySelector('.profile__info-description');
@@ -80,35 +80,35 @@ const openPopupImage = function (evt) {
   openPopup(imagePopup);
 }
 
-const closePopupImage = function() {
+const closePopupImage = function () {
   closePopup(imagePopup);
 }
 
 const createNewCard = function (item) {
-  const { name, link } = item; 
+  const { name, link } = item;
   const card = templateCard.cloneNode(true);
 
   const cardImage = card.querySelector('.card__photo');
-  cardImage.addEventListener('click', openPopupImage); 
+  cardImage.addEventListener('click', openPopupImage);
   cardImage.src = link;
   cardImage.alt = name;
 
   const cardTitle = card.querySelector('.card__title');
-  cardTitle.textContent = name; 
+  cardTitle.textContent = name;
 
   const cardLike = card.querySelector('.card__like');
-  cardLike.addEventListener('click', toggleLikes); 
+  cardLike.addEventListener('click', toggleLikes);
 
-  const cardDeleteButton = card.querySelector('.card__delete'); 
-  cardDeleteButton.addEventListener('click', deleteCard); 
-  
+  const cardDeleteButton = card.querySelector('.card__delete');
+  cardDeleteButton.addEventListener('click', deleteCard);
+
   return card;
 }
 
-const renderCards = function(data) {
+const renderCards = function (data) {
   data.forEach(item => cardsContainer.append(createNewCard(item)));
   closePopup(addCard);
-} 
+}
 
 function copyInfo() {  //заполнение имени и профессии из уже введенных
   inputProfileName.value = addProfileName.textContent;  //перенесли текст из уже введенного на страницы в поле ввода  
@@ -130,9 +130,9 @@ const openAddCard = function () {
 //создали объекn  из ввведенных в поппапе данных - 
 //вызвали создание карточки с этмими данными, 
 // добавили карточку в начало контейнера с карточками
-const addNewCard = function(evt) {
+const addNewCard = function (evt) {
   evt.preventDefault();
-  cardsContainer.prepend(createNewCard({name: inputNameCard.value, link: inputLinkCardPhoto.value}));
+  cardsContainer.prepend(createNewCard({ name: inputNameCard.value, link: inputLinkCardPhoto.value }));
   addCardForm.reset();
   closeAddCard();
 }
@@ -158,24 +158,22 @@ addCardForm.addEventListener('submit', addNewCard);
 
 imagePopupBtnClose.addEventListener('click', closePopupImage);
 
-renderCards(initialCards); 
+renderCards(initialCards);
 
 
 const showError = (formElement, inputElement, errorMessage) => {
-  const errorElement = formElement.closest(".edit-form").querySelector('.edit-form__input-error');
+  const errorElement = inputElement.closest(".form__field").querySelector('.edit-form__input-error');
   errorElement.textContent = errorMessage;
-  errorElement.classList.add('.edit-form__input-error_active')
+  errorElement.classList.add('edit-form__input-error_active')
 }
 
 const hideError = (formElement, inputElement) => {
-  const errorElement = inputElement.closest(".edit-form").querySelector('.edit-form__input-error');
+  const errorElement = inputElement.closest(".form__field").querySelector('.edit-form__input-error');
   errorElement.textContent = '';
-  errorElement.classList.remove('.edit-form__input-error_active')
+  errorElement.classList.remove('edit-form__input-error_active')
 }
 
-
 const checkValidity = (formElement, inputElement) => {
-  console.log(inputElement.validity);
   const isInputNotValid = !inputElement.validity.valid;
   if (isInputNotValid) {
     const errorMessage = inputElement.validationMessage;
@@ -185,30 +183,44 @@ const checkValidity = (formElement, inputElement) => {
   }
 }
 
-const sentEventListeners = (formElement) => {
-  const inputList = formElement.querySelectorAll('.edit-form__input');
-  inputList.forEach((inputElement) => {
-  inputElement.addEventListener('input', (event) => {
-    console.log(event.target.name, event.target.value);
-    checkValidity(formElement,inputElement);
+const hasInvalidInput = (inputList) => {
+  return inputList.some((inputElement) => {
+    return !inputElement.validity.valid;
   });
- });
 }
+
+const toggleButtonState = (inputList, submitButtonElement) => {
+  
+  if (hasInvalidInput(inputList)) {
+    submitButtonElement.classList.add('popup__btn-save_inactive');
+    submitButtonElement.setAttribute('disabled', true)
+  } else {
+    submitButtonElement.classList.remove('popup__btn-save_inactive');
+    submitButtonElement.removeAttribute('disabled')
+  };
+}
+
+const setEventListeners = (formElement) => {
+  const inputList = Array.from(formElement.querySelectorAll('.edit-form__input'));
+  const submitButtonElement = formElement.querySelector('.popup__btn-save');
+  toggleButtonState(inputList, submitButtonElement);
+  inputList.forEach((inputElement) => {
+    inputElement.addEventListener('input', (event) => {
+      console.log(event.target.name, event.target.value);
+      checkValidity(formElement, inputElement);
+      toggleButtonState(inputList, submitButtonElement); //чтобы проверять при измененеии полей 
+    });
+  });
+};
 
 const enableValidation = () => {
   const formList = Array.from(document.querySelectorAll('.form'));
-
   formList.forEach((formElement) => {
     formElement.addEventListener('submit', (event) => {
-      event.preventDefault(); 
+      event.preventDefault();
     });
-    sentEventListeners(formElement);
+    setEventListeners(formElement);
   });
 };
-enableValidation();
 
-const toggleButtonState  /*проверяет все ли формы волидны - список всем форм(инпутлист) и сама кнопка
-если форма имеет хотя бы один инпут, который не валидный, 
-const hasInvaliDInut = true; 
-добавляем кнопке класс активный, 
-иначе удаляем, класс и делаем кнопку активной) 
+enableValidation();

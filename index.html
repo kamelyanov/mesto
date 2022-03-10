@@ -46,12 +46,22 @@
     <div class="edit-form">
       <h2 class="edit-form__title">Редактировать профиль</h2>
       <form class="form edit-form__form" novalidate>
-        <input type="text" name="name" placeholder="Имя" class="edit-form__input edit-form__input_type_name" required>
-        <span class="edit-form__input-error"> Вы пропустили это поле </span>
-        <input type="text" name="description" placeholder="Профессия"
-          class="edit-form__input edit-form__input_type_description" required>
-          <span class="edit-form__input-error"> Вы пропустили это поле </span>
-        <button class="popup__btn-save " type="submit">Сохранить</button>
+        <fieldset class="form__set">
+          <label class="form__field">
+            <input type="text" name="name" placeholder="Имя" 
+            class="edit-form__input edit-form__input_type_name" minlength="2" maxlength="40" 
+              required>
+            <span class="edit-form__input-error"> Вы пропустили это поле </span>
+          </label>
+          <label class="form__field">
+            <input type="text" name="description" placeholder="Профессия"
+              class="edit-form__input edit-form__input_type_description" minlength="2" maxlength="200" required >
+            <span class="edit-form__input-error"> Вы пропустили это поле </span>
+          </label>
+          <label class="form__field">
+            <button class="popup__btn-save" type="submit">Сохранить</button>
+          </label>
+        </fieldset>
       </form>
       <button class="popup__button-glose edit-form__button-glose" type="button"></button>
     </div>
@@ -62,13 +72,21 @@
       <button class="popup__button-glose add-card__button-glose" type="button"></button>
       <h2 class="edit-form__title">Новое Место</h2>
       <form class="form add-card__form" novalidate>
-        <input type="text" name="namePhoto" placeholder="Название"
-          class="edit-form__input add-card__input-type-namePhoto" required>
-          <span class="edit-form__input-error"> Вы пропустили это поле </span>
-        <input type="text" name="linkPhoto" placeholder="Ссылка на картинку"
-          class="edit-form__input add-card__input-type-linkPhoto" required>
-          <span class="edit-form__input-error"> Введите адрес сайта. </span>
-        <button class="popup__btn-save popup__btn-save-add-card" type="submit">Создать</button>
+        <fieldset class="form__set">
+          <label class="form__field">
+            <input type="text" name="namePhoto" placeholder="Название"
+              class="edit-form__input add-card__input-type-namePhoto" minlength="2" maxlength="30" required>
+            <span class="edit-form__input-error"> Вы пропустили это поле </span>
+          </label>
+          <label class="form__field">
+            <input type="url" name="linkPhoto" placeholder="Ссылка на картинку"
+              class="edit-form__input add-card__input-type-linkPhoto" required>
+            <span class="edit-form__input-error"> Введите адрес сайта. </span>
+          </label>
+          <label class="form__field">
+            <button class="popup__btn-save popup__btn-save-add-card" type="submit">Создать</button>
+          </label>
+        </fieldset>
       </form>
     </div>
   </article>

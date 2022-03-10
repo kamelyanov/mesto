@@ -33,5 +33,4 @@
 @import url(../blocks/popup/__glose/popup__button-glose.css);
 @import url(../blocks/footer/footer.css);
 @import url(../blocks/edit-form/__input-error/_active/edit-form__input-error_active.css);
-
-
+@import url(../blocks/popup/__btn-save/_inactive/popup__btn-save_inactive.css);
