@@ -107,7 +107,7 @@ const createNewCard = function (item) {
 
 const renderCards = function (data) {
   data.forEach(item => cardsContainer.append(createNewCard(item)));
-  closePopup(addCard);
+  //closePopup(addCard);
 }
 
 function copyInfo() {  //заполнение имени и профессии из уже введенных
@@ -115,9 +115,11 @@ function copyInfo() {  //заполнение имени и профессии �
   inputProfileNameDescription.value = addProfileDescription.textContent; //то же  
 }
 
+
 const openProfileForm = function () {
   openPopup(editForm);
   copyInfo();
+  checkFormValidity(editForm);
 }
 
 const closeEditForm = function () {
@@ -126,10 +128,9 @@ const closeEditForm = function () {
 
 const openAddCard = function () {
   openPopup(addCard);
+  checkFormValidity(addCard);
 }
-//создали объекn  из ввведенных в поппапе данных - 
-//вызвали создание карточки с этмими данными, 
-// добавили карточку в начало контейнера с карточками
+
 const addNewCard = function (evt) {
   evt.preventDefault();
   cardsContainer.prepend(createNewCard({ name: inputNameCard.value, link: inputLinkCardPhoto.value }));
@@ -190,7 +191,6 @@ const hasInvalidInput = (inputList) => {
 }
 
 const toggleButtonState = (inputList, submitButtonElement) => {
-  
   if (hasInvalidInput(inputList)) {
     submitButtonElement.classList.add('popup__btn-save_inactive');
     submitButtonElement.setAttribute('disabled', true)
@@ -211,6 +211,12 @@ const setEventListeners = (formElement) => {
       toggleButtonState(inputList, submitButtonElement); //чтобы проверять при измененеии полей 
     });
   });
+};
+
+const checkFormValidity = (formElement) => {
+  const inputList = Array.from(formElement.querySelectorAll('.edit-form__input'));
+  const submitButtonElement = formElement.querySelector('.popup__btn-save');
+  toggleButtonState(inputList, submitButtonElement);
 };
 
 const enableValidation = () => {
