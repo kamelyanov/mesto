@@ -60,19 +60,29 @@ const cardsContainer = document.querySelector('.cards');
 
 const openPopup = function (popup) {
   popup.classList.add('popup-opened');
+  addEventListener('keydown', closePopupByPressEsc);
 }
 
-const closePopup = function (popup) {
+const closePopup = (popup) => {
   popup.classList.remove('popup-opened');
+  removeEventListener('keydown', closePopupByPressEsc);
 }
 
 const closePopupByOverlayClick = (event) =>{
-  console.log(event.target, event.currentTarget)
   if (event.target === event.currentTarget) {
-    console.log('работает клик внутри условия')
     closePopup(event.target);
   }
 }
+
+const closePopupByPressEsc = (evt) => {
+  console.log('press esc');
+  if (evt.key === 'Escape') {
+    console.log('work in if esc');
+    closePopup(addCard);
+    closePopup(editForm);
+    closePopup(imagePopup);
+  }
+};
 
 const toggleLikes = function (evt) {
   evt.target.classList.toggle('card__like_active');
@@ -92,7 +102,6 @@ const openPopupImage = function (evt) {
 
 const closePopupImage = function () {
   closePopup(imagePopup);
-  closePopupByOverlayClick(imagePopup);
 }
 
 const createNewCard = function (item) {
@@ -151,6 +160,12 @@ const closeAddCard = function () {
   closePopup(addCard);
 };
 
+const closePopupByPressEscAddCard = () => {
+  closePopupByPressEsc (evt, addCard);
+  console.log('вызвали esc выва')
+}
+
+
 function handleProfileFormSubmit(evt) {
   evt.preventDefault();
   addProfileName.textContent = inputProfileName.value;
@@ -168,21 +183,28 @@ addCardForm.addEventListener('submit', addNewCard);
 addCard.addEventListener('click', closePopupByOverlayClick);
 editForm.addEventListener('click', closePopupByOverlayClick);
 imagePopup.addEventListener('click', closePopupByOverlayClick);
+
+editForm.addEventListener('keydown', closePopupByOverlayClick);
+imagePopup.addEventListener('keydown', closePopupByOverlayClick);
+
 imagePopupBtnClose.addEventListener('click', closePopupImage);
-//popupOverlay.addEventListener('click', closePopupByOverlayClick);
 
 renderCards(initialCards);
 
 const showError = (formElement, inputElement, errorMessage) => {
   const errorElement = inputElement.closest(".form__field").querySelector('.edit-form__input-error');
+  const errorInputElement = inputElement.closest(".form__field").querySelector('.edit-form__input');
   errorElement.textContent = errorMessage;
   errorElement.classList.add('edit-form__input-error_active')
+  errorInputElement.classList.add('edit-form__input_type_error')
 }
 
 const hideError = (formElement, inputElement) => {
   const errorElement = inputElement.closest(".form__field").querySelector('.edit-form__input-error');
+  const errorInputElement = inputElement.closest(".form__field").querySelector('.edit-form__input');
   errorElement.textContent = '';
   errorElement.classList.remove('edit-form__input-error_active')
+  errorInputElement.classList.remove('edit-form__input_type_error')
 }
 
 const checkValidity = (formElement, inputElement) => {
@@ -240,4 +262,3 @@ const enableValidation = () => {
   });
 };
 
-enableValidation();
