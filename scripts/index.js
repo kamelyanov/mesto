@@ -30,6 +30,8 @@ const addProfileDescription = document.querySelector('.profile__info-description
 const addNewCardButton = document.querySelector('.profile__add-button');
 const editFormButtonOpen = document.querySelector('.profile__name-edit');
 
+//const popupOverlay = document.querySelector('.popup');
+
 // 1 попап 
 const editForm = document.querySelector('.edit-form-popup');
 const editFormButtonGlose = document.querySelector('.edit-form__button-glose');
@@ -64,6 +66,14 @@ const closePopup = function (popup) {
   popup.classList.remove('popup-opened');
 }
 
+const closePopupByOverlayClick = (event) =>{
+  console.log(event.target, event.currentTarget)
+  if (event.target === event.currentTarget) {
+    console.log('работает клик внутри условия')
+    closePopup(event.target);
+  }
+}
+
 const toggleLikes = function (evt) {
   evt.target.classList.toggle('card__like_active');
 }
@@ -82,6 +92,7 @@ const openPopupImage = function (evt) {
 
 const closePopupImage = function () {
   closePopup(imagePopup);
+  closePopupByOverlayClick(imagePopup);
 }
 
 const createNewCard = function (item) {
@@ -107,14 +118,12 @@ const createNewCard = function (item) {
 
 const renderCards = function (data) {
   data.forEach(item => cardsContainer.append(createNewCard(item)));
-  //closePopup(addCard);
 }
 
 function copyInfo() {  //заполнение имени и профессии из уже введенных
   inputProfileName.value = addProfileName.textContent;  //перенесли текст из уже введенного на страницы в поле ввода  
   inputProfileNameDescription.value = addProfileDescription.textContent; //то же  
 }
-
 
 const openProfileForm = function () {
   openPopup(editForm);
@@ -156,11 +165,13 @@ editFormButtonGlose.addEventListener('click', closeEditForm);
 addNewCardButton.addEventListener('click', openAddCard);
 addCardButtonGlose.addEventListener('click', closeAddCard);
 addCardForm.addEventListener('submit', addNewCard);
-
+addCard.addEventListener('click', closePopupByOverlayClick);
+editForm.addEventListener('click', closePopupByOverlayClick);
+imagePopup.addEventListener('click', closePopupByOverlayClick);
 imagePopupBtnClose.addEventListener('click', closePopupImage);
+//popupOverlay.addEventListener('click', closePopupByOverlayClick);
 
 renderCards(initialCards);
-
 
 const showError = (formElement, inputElement, errorMessage) => {
   const errorElement = inputElement.closest(".form__field").querySelector('.edit-form__input-error');
