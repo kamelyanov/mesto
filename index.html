@@ -49,14 +49,15 @@
         <fieldset class="form__set">
           <label class="form__field">
             <input type="text" name="name" placeholder="Имя" 
-            class="edit-form__input edit-form__input_type_name" minlength="2" maxlength="40" 
+            class="edit-form__input edit-form__input_type_name" minlength="2" maxlength="40" id="name-input"
               required>
-            <span class="edit-form__input-error">  </span>
+            <span class="edit-form__input-error" id="name-input-error">  </span>
           </label>
           <label class="form__field">
             <input type="text" name="description" placeholder="Профессия"
-              class="edit-form__input edit-form__input_type_description" minlength="2" maxlength="200" required >
-            <span class="edit-form__input-error">  </span>
+              class="edit-form__input edit-form__input_type_description" minlength="2" maxlength="200" 
+              id="description-input" required >
+            <span class="edit-form__input-error" id="description-input-error">  </span>
           </label>
           <label class="form__field">
             <button class="popup__btn-save" type="submit">Сохранить</button>
@@ -75,13 +76,13 @@
         <fieldset class="form__set">
           <label class="form__field">
             <input type="text" name="namePhoto" placeholder="Название"
-              class="edit-form__input add-card__input-type-namePhoto" minlength="2" maxlength="30" required>
-            <span class="edit-form__input-error">  </span>
+              class="edit-form__input add-card__input-type-namePhoto" minlength="2" maxlength="30"  id="namePhoto" required>
+            <span class="edit-form__input-error" id="namePhoto-error">  </span>
           </label>
           <label class="form__field">
             <input type="url" name="linkPhoto" placeholder="Ссылка на картинку"
-              class="edit-form__input add-card__input-type-linkPhoto" required>
-            <span class="edit-form__input-error"> </span>
+              class="edit-form__input add-card__input-type-linkPhoto" id="linkPhoto" required>
+            <span class="edit-form__input-error" id="linkPhoto-error"> </span>
           </label>
           <label class="form__field">
             <button class="popup__btn-save popup__btn-save-add-card" type="submit">Создать</button>
@@ -110,6 +111,7 @@
     </article>
   </template>
 
+  <script src="./scripts/cards.js"></script>
   <script src="./scripts/index.js"></script>
   <script src="./scripts/validate.js"></script>
 </body>
