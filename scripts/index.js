@@ -3,7 +3,6 @@ const profileDescription = document.querySelector('.profile__info-description');
 const newCardButton = document.querySelector('.profile__add-button');
 const formButtonOpenEdit = document.querySelector('.profile__name-edit');
 
-
 // 1 попап 
 const editingForm = document.querySelector('.edit-form-popup');
 const editingFormButtonGlose = document.querySelector('.edit-form__button-glose');
@@ -25,7 +24,6 @@ const photoInPopup = imagePopup.querySelector('.image-popup__photo');
 const imagePopupTitle = imagePopup.querySelector('.image-popup__title');
 const imagePopupBtnClose = imagePopup.querySelector('.image-popup__button-glose');
 
-
 // card
 const templateCard = document.querySelector('#card-template').content;
 const cardsContainer = document.querySelector('.cards');
@@ -38,7 +36,12 @@ const openPopup = function (popup) {
 const closePopup = (popup) => {
   popup.classList.remove('popup_opened');
   removeEventListener('keydown', closePopupByPressEsc);
+  
 }
+
+// const resetInputPopup = (popup) => {
+//   inputFormPopup.reset();
+// }
 
 const closePopupByOverlayClick = (event) =>{
   if (event.target === event.currentTarget) {
@@ -113,6 +116,7 @@ const closeEditForm = function () {
 }
 
 const openAddCard = function () {
+  cardAddForm.reset();
   openPopup(cardAdd);
   checkFormValidity(cardAdd, validationSettings);
 }
@@ -130,9 +134,7 @@ const closeAddCard = function () {
 
 const closePopupByPressEscAddCard = () => {
   closePopupByPressEsc (evt, cardAdd);
-  console.log('вызвали esc выва')
 }
-
 
 function handleProfileFormSubmit(evt) {
   evt.preventDefault();
