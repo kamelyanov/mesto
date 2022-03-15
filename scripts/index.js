@@ -105,7 +105,7 @@ function copyInfo() {  //заполнение имени и профессии �
 const openProfileForm = function () {
   openPopup(editingForm);
   copyInfo();
-  checkFormValidity(editingForm);
+  checkFormValidity(editingForm, validationSettings);
 }
 
 const closeEditForm = function () {
@@ -114,7 +114,7 @@ const closeEditForm = function () {
 
 const openAddCard = function () {
   openPopup(cardAdd);
-  checkFormValidity(cardAdd);
+  checkFormValidity(cardAdd, validationSettings);
 }
 
 const addNewCard = function (evt) {
