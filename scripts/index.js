@@ -47,9 +47,7 @@ const closePopupByOverlayClick = (event) =>{
 }
 
 const closePopupByPressEsc = (evt) => {
-  console.log('press esc');
   if (evt.key === 'Escape') {
-    console.log('work in if esc');
     const openedPopup = document.querySelector('.popup_opened');
     closePopup(openedPopup);
   }
