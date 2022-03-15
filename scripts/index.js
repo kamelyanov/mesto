@@ -31,23 +31,19 @@ const cardsContainer = document.querySelector('.cards');
 const openPopup = function (popup) {
   popup.classList.add('popup_opened');
   addEventListener('keydown', closePopupByPressEsc);
-}
+};
 
 const closePopup = (popup) => {
   popup.classList.remove('popup_opened');
   removeEventListener('keydown', closePopupByPressEsc);
   
-}
-
-// const resetInputPopup = (popup) => {
-//   inputFormPopup.reset();
-// }
+};
 
 const closePopupByOverlayClick = (event) =>{
   if (event.target === event.currentTarget) {
     closePopup(event.target);
   }
-}
+};
 
 const closePopupByPressEsc = (evt) => {
   if (evt.key === 'Escape') {
@@ -58,23 +54,23 @@ const closePopupByPressEsc = (evt) => {
 
 const toggleLikes = function (evt) {
   evt.target.classList.toggle('card__like_active');
-}
+};
 
 const deleteCard = function (evt) {
   const cardElement = evt.target.closest('.card');
   cardElement.remove();
-}
+};
 
 const openPopupImage = function (evt) {
   photoInPopup.src = evt.target.src;
   photoInPopup.alt = evt.target.alt;
   imagePopupTitle.textContent = evt.target.alt;
   openPopup(imagePopup);
-}
+};
 
 const closePopupImage = function () {
   closePopup(imagePopup);
-}
+};
 
 const createNewCard = function ({name, link}) {
   const card = templateCard.cloneNode(true);
@@ -94,39 +90,39 @@ const createNewCard = function ({name, link}) {
   cardDeleteButton.addEventListener('click', deleteCard);
 
   return card;
-}
+};
 
 const renderCards = function (data) {
   data.forEach(item => cardsContainer.append(createNewCard(item)));
-}
+};
 
 function copyInfo() {  //заполнение имени и профессии из уже введенных
   inputProfileName.value = profileName.textContent;  //перенесли текст из уже введенного на страницы в поле ввода  
   inputProfileNameDescription.value = profileDescription.textContent; //то же  
-}
+};
 
 const openProfileForm = function () {
   openPopup(editingForm);
   copyInfo();
   checkFormValidity(editingForm, validationSettings);
-}
+};
 
 const closeEditForm = function () {
   closePopup(editingForm);
-}
+};
 
 const openAddCard = function () {
   cardAddForm.reset();
   openPopup(cardAdd);
   checkFormValidity(cardAdd, validationSettings);
-}
+};
 
 const addNewCard = function (evt) {
   evt.preventDefault();
   cardsContainer.prepend(createNewCard({ name: nameCardInput.value, link: linkCardPhotoInput.value }));
   cardAddForm.reset();
   closeAddCard();
-}
+};
 
 const closeAddCard = function () {
   closePopup(cardAdd);
@@ -134,14 +130,14 @@ const closeAddCard = function () {
 
 const closePopupByPressEscAddCard = () => {
   closePopupByPressEsc (evt, cardAdd);
-}
+};
 
 function handleProfileFormSubmit(evt) {
   evt.preventDefault();
   profileName.textContent = inputProfileName.value;
   profileDescription.textContent = inputProfileNameDescription.value;
   closeEditForm();
-}
+};
 
 saveFormName.addEventListener('submit', handleProfileFormSubmit);
 formButtonOpenEdit.addEventListener('click', openProfileForm);
