@@ -57,20 +57,16 @@ const checkFormValidity = (formElement, object) => {
 
 const showError = (formElement, inputElement, errorMessage, object) => {
   const errorElement = formElement.querySelector(`#${inputElement.id}-error`);
-  const errorInputElement = formElement.querySelector(`#${inputElement.id}`);
-  // Евгений, errorInputElement это подчеркивание красным, как в макете и задании, 
-  // я вернул эти строки, переписав способ нахождения по Вашему замечанию аналогично errorElement
   errorElement.textContent = errorMessage;
   errorElement.classList.add(object.errorClass);
-  errorInputElement.classList.add(object.inputErrorClass);
+  inputElement.classList.add(object.inputErrorClass);
 };
 
 const hideError = (formElement, inputElement, object) => {
   const errorElement = formElement.querySelector(`#${inputElement.id}-error`);
-  const errorInputElement = formElement.querySelector(`#${inputElement.id}`);
   errorElement.textContent = '';
   errorElement.classList.remove(object.errorClass);
-  errorInputElement.classList.remove(object.inputErrorClass);
+  inputElement.classList.remove(object.inputErrorClass);
 };
 
 const enableValidation = (object) => {
