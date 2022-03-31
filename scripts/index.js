@@ -1,32 +1,6 @@
 import {FormValidator} from './FormValidator.js';
 import { Card } from './card.js';
-
-const initialCards = [
-  {
-    name: 'Архыз',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
-  },
-  {
-    name: 'Челябинская область',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg'
-  },
-  {
-    name: 'Иваново',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg'
-  },
-  {
-    name: 'Камчатка',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg'
-  },
-  {
-    name: 'Холмогорский район',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg'
-  },
-  {
-    name: 'Байкал',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
-  }
-];
+import {initialCards} from './initialCards.js';
 
 const validationSettings = {
   formSelector: '.form',
@@ -66,7 +40,6 @@ export const imagePopupTitle = imagePopup.querySelector('.image-popup__title');
 const imagePopupBtnClose = imagePopup.querySelector('.image-popup__button-glose');
 
 // card
-
 const cardsContainer = document.querySelector('.cards');
 
 const editProfileForm = new FormValidator (validationSettings, editingForm);
@@ -74,9 +47,6 @@ const addCardFormValidator = new FormValidator (validationSettings, cardAddForm)
 
 editProfileForm.enableValidation();
 addCardFormValidator.enableValidation();
-
-
-
 
 export const openPopup = function (popup) {
   popup.classList.add('popup_opened');
@@ -114,9 +84,9 @@ const closePopupImage = function () {
   closePopup(imagePopup);
 };
 
-function copyInfo() {  //заполнение имени и профессии из уже введенных
-  inputProfileName.value = profileName.textContent;  //перенесли текст из уже введенного на страницы в поле ввода  
-  inputProfileNameDescription.value = profileDescription.textContent; //то же  
+function copyInfo() {
+  inputProfileName.value = profileName.textContent; 
+  inputProfileNameDescription.value = profileDescription.textContent; 
 };
 
 const openProfileForm = function () {
@@ -132,7 +102,7 @@ const closeEditForm = function () {
 const openAddCard = function () {
   cardAddForm.reset();
   openPopup(cardAdd);
-  addCardFormValidator.checkFormValidity();  //сделать публичный метод - функция в классе валидации, очищает форму и скрывает ошибку 
+  addCardFormValidator.checkFormValidity(); 
 };
 
 const addCard = () => {
@@ -155,10 +125,6 @@ const closeAddCard = function () {
   closePopup(cardAdd);
 };
 
-const closePopupByPressEscAddCard = () => {
-  closePopupByPressEsc (evt, cardAdd);
-}; 
-
 function handleProfileFormSubmit(evt) {
   evt.preventDefault();
   profileName.textContent = inputProfileName.value;
@@ -173,6 +139,7 @@ editingFormButtonGlose.addEventListener('click', closeEditForm);
 newCardButton.addEventListener('click', openAddCard);
 сardAddButtonGlose.addEventListener('click', closeAddCard);
 cardAddForm.addEventListener('submit', addNewCard);
+
 cardAdd.addEventListener('click', closePopupByOverlayClick);
 editingForm.addEventListener('click', closePopupByOverlayClick);
 imagePopup.addEventListener('click', closePopupByOverlayClick);
