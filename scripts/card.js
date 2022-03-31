@@ -1,10 +1,10 @@
 import {photoInPopup, imagePopupTitle, imagePopup, openPopup} from './index.js'
 
 export class Card {
-  constructor (data, tamplateSelector) {
+  constructor (data, templateSelector) {
     this._name = data.name; 
     this._link = data.link;
-    this._tamplateSelector = tamplateSelector;
+    this._templateSelector = templateSelector;
   }
   
   _toggleLikes = () => {
@@ -13,6 +13,7 @@ export class Card {
 
   _deleteCard = () => {
     this._card.remove();
+    
   }; 
   
   _openPopupImage = () => {
@@ -31,7 +32,7 @@ export class Card {
 
   _getElement() {
     this._card = document
-      .querySelector(this._tamplateSelector)
+      .querySelector(this._templateSelector)
       .content
       .querySelector('.card')
       .cloneNode(true);

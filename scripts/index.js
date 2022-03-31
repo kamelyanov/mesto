@@ -1,5 +1,5 @@
 import {FormValidator} from './FormValidator.js';
-import { Card } from './card.js';
+import {Card} from './Card.js';
 import {initialCards} from './initialCards.js';
 
 const validationSettings = {
@@ -22,7 +22,7 @@ const editingForm = document.querySelector('.edit-form-popup');
 const editingFormButtonGlose = document.querySelector('.edit-form__button-glose');
 const inputProfileName = document.querySelector('.edit-form__input_type_name');
 const inputProfileNameDescription = document.querySelector('.edit-form__input_type_description');
-const saveFormName = document.querySelector('.edit-form__form');
+const formSaveName = document.querySelector('.edit-form__form');
 
 // // 2 попап 
 const cardAdd = document.querySelector('.add-card-popup');
@@ -42,10 +42,10 @@ const imagePopupBtnClose = imagePopup.querySelector('.image-popup__button-glose'
 // card
 const cardsContainer = document.querySelector('.cards');
 
-const editProfileForm = new FormValidator (validationSettings, editingForm);
+const formEditProfile = new FormValidator (validationSettings, editingForm);
 const addCardFormValidator = new FormValidator (validationSettings, cardAddForm);
 
-editProfileForm.enableValidation();
+formEditProfile.enableValidation();
 addCardFormValidator.enableValidation();
 
 export const openPopup = function (popup) {
@@ -90,9 +90,9 @@ function copyInfo() {
 };
 
 const openProfileForm = function () {
-  openPopup(editingForm);
   copyInfo();
-  editProfileForm.checkFormValidity();
+  formEditProfile.checkFormValidity();
+  openPopup(editingForm);
 };
 
 const closeEditForm = function () {
@@ -101,8 +101,8 @@ const closeEditForm = function () {
 
 const openAddCard = function () {
   cardAddForm.reset();
-  openPopup(cardAdd);
   addCardFormValidator.checkFormValidity(); 
+  openPopup(cardAdd);
 };
 
 const addCard = () => {
@@ -116,9 +116,9 @@ const addCard = () => {
 
 const addNewCard = (evt) => {
   evt.preventDefault();
+  closeAddCard();
   addCard();
   cardAddForm.reset();
-  closeAddCard();
 };
 
 const closeAddCard = function () {
@@ -127,12 +127,12 @@ const closeAddCard = function () {
 
 function handleProfileFormSubmit(evt) {
   evt.preventDefault();
+  closeEditForm();
   profileName.textContent = inputProfileName.value;
   profileDescription.textContent = inputProfileNameDescription.value;
-  closeEditForm();
 };
 
-saveFormName.addEventListener('submit', handleProfileFormSubmit);
+formSaveName.addEventListener('submit', handleProfileFormSubmit);
 formButtonOpenEdit.addEventListener('click', openProfileForm);
 editingFormButtonGlose.addEventListener('click', closeEditForm);
 
