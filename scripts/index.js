@@ -43,10 +43,10 @@ const imagePopupBtnClose = imagePopup.querySelector('.image-popup__button-glose'
 const cardsContainer = document.querySelector('.cards');
 
 const formEditProfile = new FormValidator (validationSettings, editingForm);
-const addCardFormValidator = new FormValidator (validationSettings, cardAddForm);
+const cardAddFormValidator = new FormValidator (validationSettings, cardAddForm);
 
 formEditProfile.enableValidation();
-addCardFormValidator.enableValidation();
+cardAddFormValidator.enableValidation();
 
 export const openPopup = function (popup) {
   popup.classList.add('popup_opened');
@@ -101,7 +101,7 @@ const closeEditForm = function () {
 
 const openAddCard = function () {
   cardAddForm.reset();
-  addCardFormValidator.checkFormValidity(); 
+  cardAddFormValidator.checkFormValidity(); 
   openPopup(cardAdd);
 };
 
