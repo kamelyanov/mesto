@@ -16,12 +16,12 @@ export class Card {
     
   }; 
   
-  _openPopupImage = () => {
-    photoInPopup.src = this._link;
-    photoInPopup.alt = this._name;
-    imagePopupTitle.textContent = this._name;
-    openPopup(imagePopup);
-  };
+  // _openPopupImage = () => {
+  //   photoInPopup.src = this._link;
+  //   photoInPopup.alt = this._name;
+  //   imagePopupTitle.textContent = this._name;
+  //   openPopup(imagePopup);
+  // };
 
   _setEventListeners() {
     this._cardImage.addEventListener('click', this._openPopupImage);

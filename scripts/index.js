@@ -63,8 +63,7 @@ renderCards(initialCards);
 
 const closePopup = (popup) => {
   popup.classList.remove('popup_opened');
-  removeEventListener('keydown', closePopupByPressEsc);
-  
+  removeEventListener('keydown', closePopupByPressEsc); 
 };
 
 const closePopupByOverlayClick = (event) =>{
