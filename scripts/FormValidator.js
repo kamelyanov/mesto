@@ -1,4 +1,4 @@
-export class FormValidator {
+export default class FormValidator {
   constructor(object, form) {
     this._object = object;
     this._form = form;
@@ -12,20 +12,20 @@ export class FormValidator {
     errorElement.textContent = errorMessage;
     errorElement.classList.add(this._object.errorClass);
     inputElement.classList.add(this._object.inputErrorClass);
-  };
+  }
 
   _hideError(inputElement) {
     const errorElement = this._form.querySelector(`#${inputElement.id}-error`);
     errorElement.textContent = '';
     errorElement.classList.remove(this._object.errorClass);
     inputElement.classList.remove(this._object.inputErrorClass);
-  };
+  }
 
   _hasInvalidInput() {
     return this._inputList.some((inputElement) => {
       return !inputElement.validity.valid;
-    });
-  };
+    })
+  }
 
   _toggleButtonState() {
     if (this._hasInvalidInput()) {
@@ -34,15 +34,15 @@ export class FormValidator {
     } else {
       this._submitButtonElement.classList.remove(this._object.inactiveButtonClass);
       this._submitButtonElement.removeAttribute('disabled')
-    };
-  };
+    }
+  }
 
   checkFormValidity = () => {
     this._toggleButtonState();
     this._inputList.forEach(inputElement => {
       this._hideError(inputElement)
-    });
-  };
+    })
+  }
 
   _checkValidity(inputElement) {
     const isInputNotValid = !inputElement.validity.valid;
@@ -51,8 +51,8 @@ export class FormValidator {
       this._showError(inputElement, errorMessage);
     } else {
       this._hideError(inputElement);
-    };
-  };
+    }
+  }
 
   _setEventListeners() {
     this._toggleButtonState();
@@ -61,17 +61,15 @@ export class FormValidator {
         // console.log('this =>', this) //если не работает сделать внешнюю функцию стрелочной
         this._checkValidity(inputElement);
         this._toggleButtonState();
-      });
-    });
-  };
+      })
+    })
+  }
 
   enableValidation() {
     this._form.addEventListener('submit', (event) => {
       event.preventDefault();
-    });
+    })
 
     this._setEventListeners();
-  };
-};
-
-
+  }
+}
