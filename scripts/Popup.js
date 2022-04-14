@@ -4,22 +4,23 @@ export default class Popup {
   }
 
   // слушатели закрытия 
-  setEventListeners() {
+  setEventListeners = () => {
     this._popupBtnClose = this._popup.querySelector('.popup__button-glose');
-    this._popupBtnClose.addEvenListener('click', this._close)
+    this._popupBtnClose.addEventListener('click', () => this.close())
+    this._popup.addEventListener('click', this._closePopupByOverlayClick)
   }
 
   //закрытие попапа кнопкой esc
   _handleEscClose = (evt) => {
     if (evt.key === 'Escape') {
-      this._close();
+      this.close();
     }
   }
 
   //закрытие попапа кликом на оверлей
   _closePopupByOverlayClick = (event) => {
     if (event.target === event.currentTarget) {
-      this._close();
+      this.close();
     }
   };
 

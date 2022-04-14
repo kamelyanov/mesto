@@ -9,6 +9,11 @@ import UserInfo from './UserInfo.js';
 import {  
   cardListSection, 
   templateSelector,
+  
+  popupCardAddSelector,
+  popupEditingFormSelector,
+  popupWithImageSelector,
+  
   imagePopup,
   photoInPopup,
   imagePopupTitle,
@@ -55,14 +60,31 @@ const validationSettings = {
 }; 
 
 
-//ОТРИСОВКА СЕКЦИИ КАРТОЧЕК
+//СОЗДАНИЕ ОТДЕЛЬНЫХ КАРТОЧЕК 
+// const createCard = (data) => {
+//   const card = new Card (
+//     data, 
+//     templateSelector, 
+//     console.log('handleCardClick')
+//   )
+// }
+
+//ПОПАП С ФОРМОЙ РЕДАКТИРОВАНИЯ ДАННЫХ ПОЛЬЗОВАТЕЛЯ 
+
+//ПОПАП С ФОРМОЙ ДОБАВЛЕНИЯ КАРТОЧКИ
+
+//ПОПАП С КАРТИНКОЙ
+const popupWithImage = new PopupWithImage(popupWithImageSelector);
+popupWithImage.setEventListeners()
+
+//НАЧАЛЬНАЯ ОТРИСОВКА СЕКЦИИ КАРТОЧЕК
 const cardsList = new Section({
   data: initialCards,
   renderer: (cardItem) => {
-    const card = new Card(cardItem, templateSelector, console.log('handleCardClick'));
+    const card = new Card(cardItem, templateSelector, () => popupWithImage.open(cardItem));
     const cardElement = card.createNewCard()
     cardsList.setItem(cardElement);
-  },
+  }
 }, 
 cardListSection
 ); 
