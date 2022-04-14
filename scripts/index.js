@@ -17,15 +17,17 @@ import {
   imagePopup,
   photoInPopup,
   imagePopupTitle,
-  editingForm,
+  userNameEditFormSelector,
   cardAdd,
-  cardAddForm
+  cardAddFormSelector,
+  newCardButton,
+  formButtonOpenEdit,
 } from '../utils/constans.js'; 
 
 const profileName = document.querySelector('.profile__name-title');
 const profileDescription = document.querySelector('.profile__info-description');
-const newCardButton = document.querySelector('.profile__add-button');
-const formButtonOpenEdit = document.querySelector('.profile__name-edit');
+
+
 
 // // 1 попап 
 
@@ -61,17 +63,34 @@ const validationSettings = {
 
 
 //СОЗДАНИЕ ОТДЕЛЬНЫХ КАРТОЧЕК 
-// const createCard = (data) => {
-//   const card = new Card (
-//     data, 
-//     templateSelector, 
-//     console.log('handleCardClick')
-//   )
-// }
+
+
+//ОТКРЫТИЕ ПОПАПА С ФОРМОЙ ИЗМЕНЕНИЯ ДАННЫХ ПОЛЬЗОВАТЕЛЯ
+const popupEditingUser = new Popup(popupEditingFormSelector)
+formButtonOpenEdit.addEventListener('click', () => popupEditingUser.open())
 
 //ПОПАП С ФОРМОЙ РЕДАКТИРОВАНИЯ ДАННЫХ ПОЛЬЗОВАТЕЛЯ 
+// const popupEditingUserForm = new PopupWithForm (
+//   userNameEditFormSelector, 
+//   () => new UserInfo ()
+// )
 
-//ПОПАП С ФОРМОЙ ДОБАВЛЕНИЯ КАРТОЧКИ
+
+
+//ОТКРЫТИЕ ПОПАПА С ФОРМОЙ ДОБАВЛЕНИЯ КАРТОЧКИ 
+const popupAddCard = new Popup(popupCardAddSelector)
+newCardButton.addEventListener('click', () => popupAddCard.open())
+
+//ФОРМf ДОБАВЛЕНИЯ КАРТОЧКИ
+const popupAddCardForm = new PopupWithForm (
+  popupCardAddSelector, 
+  (cardItem) => {
+    const card = new Card(cardItem, templateSelector, () => popupWithImage.open(cardItem));
+    const cardElement = card.createNewCard()
+    cardsList.setItem(cardElement);
+  }
+)
+popupAddCardForm.setEventListeners()
 
 //ПОПАП С КАРТИНКОЙ
 const popupWithImage = new PopupWithImage(popupWithImageSelector);
@@ -93,7 +112,7 @@ cardsList.renderItems();
 
 //ВАЛИДАЦИЯ
 const formEditProfile = new FormValidator (validationSettings, editingForm);
-const cardAddFormValidator = new FormValidator (validationSettings, cardAddForm);
+const cardAddFormValidator = new FormValidator (validationSettings, cardAdd);
 
 formEditProfile.enableValidation();
 cardAddFormValidator.enableValidation();
