@@ -1,5 +1,5 @@
-const cardsContainer = document.querySelector('.cards'); //секция с карточками
-const templateSelector = document.querySelector('.card-template'); //template cards
+const cardListSection = '.cards'; //секция с карточками
+const templateSelector = '#card-template'; //template cards
 
 const imagePopup = document.querySelector('.image-popup-view'); //попап с большой картинкой 
 const photoInPopup = imagePopup.querySelector('.image-popup__photo'); // картинка в попапе
@@ -10,7 +10,7 @@ const cardAdd = document.querySelector('.add-card-popup'); // попап доб�
 const cardAddForm = document.querySelector('.add-card__form'); // форма добавления  карточки
 
 export {
-  cardsContainer, 
+  cardListSection, 
   templateSelector,
   imagePopup,
   photoInPopup,

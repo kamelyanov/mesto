@@ -1,18 +1,18 @@
 export default class Section {
-  constructor ({data, renderer}, templateSelector) {
+  constructor ({data, renderer}, selector) {
     this._renderedItems = data;
     this._renderer = renderer;
 
-    this._container = document.querySelector(templateSelector);
+    this._container = document.querySelector(selector);
   }
 
   // отрисовка всех элементов
   renderItems() {
-    this._renderedItems.forEach(item => this._renderer(item));
+    this._renderedItems.forEach(item => this._renderer(item))
   }
 
   // добавление DOM-элемента в контейнер
-  addItem(element) {
+  setItem(element) {
     this._container.append(element);
   }
 }

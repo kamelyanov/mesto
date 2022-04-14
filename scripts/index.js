@@ -7,7 +7,7 @@ import PopupWithImage from './PopupWithImage.js';
 import PopupWithForm from './PopupWithForm.js';
 import UserInfo from './UserInfo.js';
 import {  
-  cardsContainer, 
+  cardListSection, 
   templateSelector,
   imagePopup,
   photoInPopup,
@@ -55,50 +55,26 @@ const validationSettings = {
 }; 
 
 
-
-
-// const createCard = (data) => {
-//   const card = new Card (
-//     data,
-//     templateSelector, 
-//     popupPhoto.open(data)
-//   )
-// return card
-// }
-
-//создание секции 
-const cardList = new Section ({
+//ОТРИСОВКА СЕКЦИИ КАРТОЧЕК
+const cardsList = new Section({
   data: initialCards,
-  renderer: (item) => {
-    const card = new Card (
-      item,
-      templateSelector,
-      console.log('здесь должен быть хандлкардклик')
-    )
-  }
-}, templateSelector)
+  renderer: (cardItem) => {
+    const card = new Card(cardItem, templateSelector, console.log('handleCardClick'));
+    const cardElement = card.createNewCard()
+    cardsList.setItem(cardElement);
+  },
+}, 
+cardListSection
+); 
 
+cardsList.renderItems();
 
-//создание карточки 
-// const createCard = (card) => new Card(card, '#card-template').createNewCard();
-
-// const renderCards = (data) => {
-//   data.forEach(item => cardsContainer.append(createNewCard(item)));
-// };
-
-// renderCards(initialCards);
-
-//валидация 
+//ВАЛИДАЦИЯ
 const formEditProfile = new FormValidator (validationSettings, editingForm);
 const cardAddFormValidator = new FormValidator (validationSettings, cardAddForm);
 
 formEditProfile.enableValidation();
 cardAddFormValidator.enableValidation();
-
-
-
-
-// card
 
 
 
