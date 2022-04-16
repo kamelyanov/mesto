@@ -1,5 +1,5 @@
 export default class Section {
-  constructor ({data, renderer}, selector) {
+  constructor({ data, renderer }, selector) {
     this._renderedItems = data;
     this._renderer = renderer;
 

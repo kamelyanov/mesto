@@ -1,11 +1,11 @@
 export default class Card {
-  constructor (data, templateSelector, handleCardClick) {
-    this._name = data.name; 
+  constructor(data, templateSelector, handleCardClick) {
+    this._name = data.name;
     this._link = data.link;
     this._templateSelector = templateSelector;
     this._handleCardClick = handleCardClick;
   }
-  
+
   _toggleLikes = () => {
     this._cardLike.classList.toggle('card__like_active');
   }
@@ -32,15 +32,15 @@ export default class Card {
   createNewCard() {
     this._getElement();
     this._cardLike = this._card.querySelector('.card__like');
-    
+
     this._cardImage = this._card.querySelector('.card__photo');
     this._cardImage.src = this._link;
     this._cardImage.alt = this._name;
-    
+
     this._cardTitle = this._card.querySelector('.card__title');
     this._cardTitle.textContent = this._name;
     this._setEventListeners();
-       
+
     return this._card;
   }
 }
