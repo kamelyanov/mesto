@@ -1,10 +1,11 @@
-import FormValidator from './FormValidator.js';
-import Card from './Card.js';
-import { initialCards } from './initialCards.js';
-import Section from './Section.js';
-import PopupWithImage from './PopupWithImage.js';
-import PopupWithForm from './PopupWithForm.js';
-import UserInfo from './UserInfo.js';
+import "./index.css";
+import FormValidator from './scripts/components/FormValidator.js';
+import Card from './scripts/components/Card.js';
+import { initialCards } from './scripts/utils/initialCards.js';
+import Section from './scripts/components/Section.js';
+import PopupWithImage from './scripts/components/PopupWithImage.js';
+import PopupWithForm from './scripts/components/PopupWithForm.js';
+import UserInfo from './scripts/components/UserInfo.js';
 
 import {
   cardListSection,
@@ -22,7 +23,7 @@ import {
   nameCardInput,
   linkCardPhotoInput,
   validationSettings,
-} from '../utils/constans.js';
+} from './scripts/utils/constans.js';
 
 //НАЧАЛЬНАЯ ОТРИСОВКА СЕКЦИИ КАРТОЧЕК
 const cardsList = new Section({

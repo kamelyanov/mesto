@@ -6,6 +6,9 @@
   cursor: pointer;
   align-self: center;
   transition: opacity 0.2s;
+  background-image: url(../../../images/add-button.svg);
+  background-position: center;
+  background-repeat: no-repeat;
 }
 
 .profile__add-button:hover {
