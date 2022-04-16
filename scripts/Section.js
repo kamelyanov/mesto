@@ -13,6 +13,6 @@ export default class Section {
 
   // добавление DOM-элемента в контейнер
   setItem(element) {
-    this._container.append(element);
+    this._container.prepend(element);
   }
 }

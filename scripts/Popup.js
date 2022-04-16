@@ -4,7 +4,7 @@ export default class Popup {
   }
 
   // слушатели закрытия 
-  setEventListeners = () => {
+  setEventListeners() {
     this._popupBtnClose = this._popup.querySelector('.popup__button-glose');
     this._popupBtnClose.addEventListener('click', () => this.close())
     this._popup.addEventListener('click', this._closePopupByOverlayClick)
