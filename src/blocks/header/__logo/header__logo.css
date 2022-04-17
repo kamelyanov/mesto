@@ -1,7 +1,6 @@
 .header__logo {
   transition: opacity 0.2s;
   background-image: url(../../../images/logo.svg);
-  background-size: cover;
   width: 142px;
   height: 33px;
 }

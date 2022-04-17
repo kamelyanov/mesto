@@ -22,9 +22,6 @@ const userInfoSelector = { //объект с данными пользовате
   desc: profileDescriptionSelector,
 }
 
-const nameCardInput = document.querySelector('.add-card__input-type-namePhoto');  //поле ввода названия новой карточки 
-const linkCardPhotoInput = document.querySelector('.add-card__input-type-linkPhoto'); //полсе ввода ссылки
-
 //настройки валидации
 const validationSettings = {
   formSelector: '.form',
@@ -48,7 +45,5 @@ export {
   inputProfileName,
   inputProfileNameDescription,
   userInfoSelector,
-  nameCardInput,
-  linkCardPhotoInput,
   validationSettings,
 }

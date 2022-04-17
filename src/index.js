@@ -20,17 +20,21 @@ import {
   inputProfileName,
   inputProfileNameDescription,
   userInfoSelector,
-  nameCardInput,
-  linkCardPhotoInput,
   validationSettings,
 } from './scripts/utils/constans.js';
+
+//ФУНКЦИЯ СОЗДАНИЯ КАРТОЧКИ 
+const createCard = (data) => {
+  const card = new Card(data, templateSelector, () => popupWithImage.open(data));
+  return card;
+}
 
 //НАЧАЛЬНАЯ ОТРИСОВКА СЕКЦИИ КАРТОЧЕК
 const cardsList = new Section({
   data: initialCards,
   renderer: (cardItem) => {
-    const card = new Card(cardItem, templateSelector, () => popupWithImage.open(cardItem));
-    const cardElement = card.createNewCard()
+    const card = createCard(cardItem);
+    const cardElement = card.renderNewCard()
     cardsList.setItem(cardElement);
   }
 },
@@ -43,8 +47,8 @@ cardsList.renderItems();
 const copyInfo = new UserInfo(userInfoSelector);
 
 //ПОПАП С ИЗМЕНЕНИЕМ ДАННЫХ ПОЛЬЗОВАТЕЛЯ
-const popupEditingUser = new PopupWithForm(popupEditingFormSelector, () => {
-  copyInfo.setUserInfo(inputProfileName, inputProfileNameDescription)
+const popupEditingUser = new PopupWithForm(popupEditingFormSelector, (formData) => {
+  copyInfo.setUserInfo(formData)
   popupEditingUser.close();
 })
 
@@ -57,26 +61,20 @@ formButtonOpenEdit.addEventListener('click', () => {
 
 popupEditingUser.setEventListeners()
 
-
 //ПОПАП С ФОРМОЙ ДОБАВЛЕНИЯ КАРТОЧКИ 
-const popupAddCard = new PopupWithForm(popupCardAddSelector, () => {
-  const newValues = {
-    name: nameCardInput.value,
-    link: linkCardPhotoInput.value
-  }
-
-  const card = new Card(newValues, templateSelector, () => popupWithImage.open(newValues));
-  const cardElement = card.createNewCard()
+const popupAddCard = new PopupWithForm(popupCardAddSelector, (formData) => {
+  const card = createCard(formData);
+  const cardElement = card.renderNewCard()
   cardsList.setItem(cardElement);
   popupAddCard.close();
 })
 
 popupAddCard.setEventListeners()
+
 newCardButton.addEventListener('click', () => {
   popupAddCard.open()
   cardAddFormValidator.checkFormValidity()
 })
-
 
 //ПОПАП С КАРТИНКОЙ
 const popupWithImage = new PopupWithImage(popupWithImageSelector);

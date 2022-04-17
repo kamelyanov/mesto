@@ -29,7 +29,7 @@ export default class Card {
       .cloneNode(true);
   }
 
-  createNewCard() {
+  renderNewCard() {
     this._getElement();
     this._cardLike = this._card.querySelector('.card__like');
 
