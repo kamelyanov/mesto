@@ -66,7 +66,7 @@
     </div>
   </article>
 
-  <article class="popup add-card-popup ">
+  <article class="popup add-card-popup">
     <div class="add-card edit-form">
       <button class="popup__button-glose add-card__button-glose" type="button"></button>
       <h2 class="edit-form__title">Новое Место</h2>
@@ -91,12 +91,35 @@
     </div>
   </article>
 
+  <article class="popup update-avatar-popup">
+    <div class="edit-form update-avatar">
+      <button class="popup__button-glose update-avatar__button-glose" type="button"></button>
+      <h2 class="edit-form__title">Обновить аватар</h2>
+      <form class="form update-avatar__form" novalidate>
+        <fieldset class="form__set">
+          <label class="form__field">
+            <input type="url" name="link" placeholder="Ссылка на новый аватар"
+              class="edit-form__input add-card__input-type-linkNewAvatar" id="linkNewAvatar" required>
+            <span class="edit-form__input-error" id="linkNewAvatar-error"> </span>
+          </label>
+          <label class="form__field">
+            <button class="popup__btn-save popup__btn-save-update-avatar" type="submit">Сохранить</button>
+          </label>
+        </fieldset>
+      </form>
+    </div>
+  </article>
+
   <article class="image-popup-view popup">
     <div class="image-popup">
       <img src="#" alt="" class="image-popup__photo">
       <p class="image-popup__title"></p>
       <button class="popup__button-glose image-popup__button-glose" type="button"></button>
     </div>
+  </article>
+
+  <article class="popup edit-form-popup">
+
   </article>
 
   <template id="card-template">

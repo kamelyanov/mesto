@@ -6,6 +6,7 @@ import Section from './scripts/components/Section.js';
 import PopupWithImage from './scripts/components/PopupWithImage.js';
 import PopupWithForm from './scripts/components/PopupWithForm.js';
 import UserInfo from './scripts/components/UserInfo.js';
+import Api from './scripts/components/Api';
 
 import {
   cardListSection,
@@ -23,25 +24,58 @@ import {
   validationSettings,
 } from './scripts/utils/constans.js';
 
+const api = new Api ({
+  baseUrl: 'https://mesto.nomoreparties.co/v1/cohort-40',
+  headers: {
+    authorization: 'f7589185-ed99-4be1-a397-eccc85dc81c2',
+    'Content-Type': 'application/json'
+}
+})
+
+//загрузка карточек, данных пользователя с 
+Promise.all([api.getUserInfo(), api.getInitialCards()])
+  .then(([user, cards]) => {
+    user
+  })
+
+  .catch((err) => {
+    console.log(err); // выведем ошибку в консоль
+  }); 
+
+
+
+
 //ФУНКЦИЯ СОЗДАНИЯ КАРТОЧКИ 
 const createCard = (data) => {
   const card = new Card(data, templateSelector, () => popupWithImage.open(data));
   return card;
 }
 
-//НАЧАЛЬНАЯ ОТРИСОВКА СЕКЦИИ КАРТОЧЕК
 const cardsList = new Section({
-  data: initialCards,
-  renderer: (cardItem) => {
-    const card = createCard(cardItem);
-    const cardElement = card.renderNewCard()
-    cardsList.setItem(cardElement);
-  }
-},
-  cardListSection
-);
+    data: initialCards,
+    renderer: (cardItem) => {
+      const card = createCard(cardItem);
+      const cardElement = card.renderNewCard()
+      cardsList.setItem(cardElement);
+    }
+  },
+    cardListSection
+  );
 
-cardsList.renderItems();
+
+//НАЧАЛЬНАЯ ОТРИСОВКА СЕКЦИИ КАРТОЧЕК
+// const cardsList = new Section({
+//   data: initialCards,
+//   renderer: (cardItem) => {
+//     const card = createCard(cardItem);
+//     const cardElement = card.renderNewCard()
+//     cardsList.setItem(cardElement);
+//   }
+// },
+//   cardListSection
+// );
+
+// cardsList.renderItems();
 
 //ИЗМЕНЕНИЕ ДАННЫХ ПОЛЬЗОВАТЕЛЯ
 const copyInfo = new UserInfo(userInfoSelector);
@@ -86,3 +120,4 @@ const cardAddFormValidator = new FormValidator(validationSettings, cardAdd);
 
 formEditProfile.enableValidation();
 cardAddFormValidator.enableValidation();
+
