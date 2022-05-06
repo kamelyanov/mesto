@@ -13,6 +13,7 @@ const userNameEdit = document.querySelector('.edit-form-popup'); //попап и
 
 const profileNameSelector = ('.profile__name-title'); //Селектор имени пользователя 
 const profileDescriptionSelector = ('.profile__info-description');  //Селектор описания пользователя
+const profileAvatar = ('.profile__avatar') //Селектор Аватара
 
 const inputProfileName = document.querySelector('.edit-form__input_type_name'); //поле изменения имени пользователя 
 const inputProfileNameDescription = document.querySelector('.edit-form__input_type_description'); //поле изменения описания пользователя
@@ -20,6 +21,7 @@ const inputProfileNameDescription = document.querySelector('.edit-form__input_ty
 const userInfoSelector = { //объект с данными пользователя 
   name: profileNameSelector,
   desc: profileDescriptionSelector,
+  avatar: profileAvatar
 }
 
 //настройки валидации

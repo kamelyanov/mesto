@@ -1,7 +1,6 @@
 import "./index.css";
 import FormValidator from './scripts/components/FormValidator.js';
 import Card from './scripts/components/Card.js';
-import { initialCards } from './scripts/utils/initialCards.js';
 import Section from './scripts/components/Section.js';
 import PopupWithImage from './scripts/components/PopupWithImage.js';
 import PopupWithForm from './scripts/components/PopupWithForm.js';
@@ -32,17 +31,17 @@ const api = new Api ({
 }
 })
 
-//загрузка карточек, данных пользователя с 
+//загрузка карточек, данных пользователя с сервера
 Promise.all([api.getUserInfo(), api.getInitialCards()])
   .then(([user, cards]) => {
-    user
+    userInfo.setUserInfo({
+      name: user.name,
+      desc: user.about,
+      avatar: user.avatar
+    });
+    cardsList.renderItems(cards)
   })
-
-  .catch((err) => {
-    console.log(err); // выведем ошибку в консоль
-  }); 
-
-
+  .catch((err) => console.log(err))
 
 
 //ФУНКЦИЯ СОЗДАНИЯ КАРТОЧКИ 
@@ -51,44 +50,28 @@ const createCard = (data) => {
   return card;
 }
 
-const cardsList = new Section({
-    data: initialCards,
-    renderer: (cardItem) => {
-      const card = createCard(cardItem);
-      const cardElement = card.renderNewCard()
-      cardsList.setItem(cardElement);
-    }
+//Секция
+const cardsList = new Section(
+  (cardItem) => {
+    const card = createCard(cardItem);
+    const cardElement = card.renderNewCard()
+    cardsList.setItem(cardElement);
   },
-    cardListSection
-  );
-
-
-//НАЧАЛЬНАЯ ОТРИСОВКА СЕКЦИИ КАРТОЧЕК
-// const cardsList = new Section({
-//   data: initialCards,
-//   renderer: (cardItem) => {
-//     const card = createCard(cardItem);
-//     const cardElement = card.renderNewCard()
-//     cardsList.setItem(cardElement);
-//   }
-// },
-//   cardListSection
-// );
-
-// cardsList.renderItems();
+  cardListSection
+)
 
 //ИЗМЕНЕНИЕ ДАННЫХ ПОЛЬЗОВАТЕЛЯ
-const copyInfo = new UserInfo(userInfoSelector);
+const userInfo = new UserInfo(userInfoSelector);
 
 //ПОПАП С ИЗМЕНЕНИЕМ ДАННЫХ ПОЛЬЗОВАТЕЛЯ
 const popupEditingUser = new PopupWithForm(popupEditingFormSelector, (formData) => {
-  copyInfo.setUserInfo(formData)
+  userInfo.setUserInfo(formData)
   popupEditingUser.close();
 })
 
 formButtonOpenEdit.addEventListener('click', () => {
-  inputProfileName.value = copyInfo.getUserInfo().name
-  inputProfileNameDescription.value = copyInfo.getUserInfo().desc
+  inputProfileName.value = userInfo.getUserInfo().name
+  inputProfileNameDescription.value = userInfo.getUserInfo().desc
   popupEditingUser.open()
   formEditProfile.checkFormValidity()
 })
@@ -120,4 +103,3 @@ const cardAddFormValidator = new FormValidator(validationSettings, cardAdd);
 
 formEditProfile.enableValidation();
 cardAddFormValidator.enableValidation();
-
