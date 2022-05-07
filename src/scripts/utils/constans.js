@@ -10,6 +10,8 @@ const formButtonOpenEdit = document.querySelector('.profile__name-edit'); //кн
 
 const cardAdd = document.querySelector('.add-card-popup'); // попап добавления  карточки
 const userNameEdit = document.querySelector('.edit-form-popup'); //попап изменения имени
+const editAvatar = document.querySelector('.update-avatar-popup'); //попап изменения аватарки
+const confirmDeleteCard = document.querySelector('.confirm-popup'); //попап подтверждения удаления карточки 
 
 const profileNameSelector = ('.profile__name-title'); //Селектор имени пользователя 
 const profileDescriptionSelector = ('.profile__info-description');  //Селектор описания пользователя
@@ -17,6 +19,7 @@ const profileAvatar = ('.profile__avatar') //Селектор Аватара
 
 const inputProfileName = document.querySelector('.edit-form__input_type_name'); //поле изменения имени пользователя 
 const inputProfileNameDescription = document.querySelector('.edit-form__input_type_description'); //поле изменения описания пользователя
+const inputProfileAvatar = document.querySelector('edit-form__input-type-linkNewAvatar'); //поле изменения ссылки на аватарку
 
 const userInfoSelector = { //объект с данными пользователя 
   name: profileNameSelector,
@@ -44,8 +47,12 @@ export {
   formButtonOpenEdit,
   cardAdd,
   userNameEdit,
+  editAvatar,
+  confirmDeleteCard,
+  profileAvatar,
   inputProfileName,
   inputProfileNameDescription,
+  inputProfileAvatar,
   userInfoSelector,
   validationSettings,
 }
