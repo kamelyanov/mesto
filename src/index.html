@@ -98,9 +98,9 @@
       <form class="form update-avatar__form" novalidate>
         <fieldset class="form__set">
           <label class="form__field">
-            <input type="url" name="linkAvatar" placeholder="Ссылка на новый аватар"
-              class="edit-form__input edit-form__input-type-linkNewAvatar" id="linkAvatar" required>
-            <span class="edit-form__input-error" id="linkNewAvatar-error"> </span>
+            <input type="url" name="avatar" placeholder="Ссылка на новый аватар"
+              class="edit-form__input edit-form__input-type-linkNewAvatar" id="avatar" required>
+            <span class="edit-form__input-error" id="avatar-error"> </span>
           </label>
           <label class="form__field">
             <button class="popup__btn-save popup__btn-save-update-avatar" type="submit">Сохранить</button>
@@ -111,13 +111,13 @@
   </article>
 
   <article class="popup confirm-popup">
-    <div class="edit-form confirm-popup">
+    <div class="edit-form confirm">
       <button class="popup__button-glose confirm-popup__button-glose" type="button"></button>
       <h2 class="confirm-popup__title">Вы уверены?</h2>
       <form class="form confirm-popup__form" novalidate>
         <fieldset class="form__set">
           <label class="form__field">
-            <button class="popup__btn-confirm" type="submit">Да</button>
+            <button class="popup__btn-save popup__btn-confirm" type="submit">Да</button>
           </label>
         </fieldset>
       </form>

@@ -4,18 +4,22 @@ const templateSelector = '#card-template'; //  селектор template cards
 const popupEditingFormSelector = '.edit-form-popup'; //селектор изменения данных пользователя
 const popupCardAddSelector = '.add-card-popup'; // селектор попапа с формой добавления карточки
 const popupWithImageSelector = '.image-popup-view'; //cелектор попапа с фото
+const confirmDeleteSelector = '.confirm-popup'; //селектор попапа подтверждения удаления карточки
+const editAvatarSelector = '.update-avatar-popup'; //попап изменения аватарки
+
 
 const newCardButton = document.querySelector('.profile__add-button');//кнопка открытия попапа добавления карточки
 const formButtonOpenEdit = document.querySelector('.profile__name-edit'); //кнопка изменения имени
+const profileAvatarElement = document.querySelector('.profile__avatar'); //аватар на странице DOM element 
 
 const cardAdd = document.querySelector('.add-card-popup'); // попап добавления  карточки
 const userNameEdit = document.querySelector('.edit-form-popup'); //попап изменения имени
 const editAvatar = document.querySelector('.update-avatar-popup'); //попап изменения аватарки
-const confirmDeleteCard = document.querySelector('.confirm-popup'); //попап подтверждения удаления карточки 
+
 
 const profileNameSelector = ('.profile__name-title'); //Селектор имени пользователя 
 const profileDescriptionSelector = ('.profile__info-description');  //Селектор описания пользователя
-const profileAvatar = ('.profile__avatar') //Селектор Аватара
+const profileAvatarSelector = ('.profile__avatar') //Селектор Аватара
 
 const inputProfileName = document.querySelector('.edit-form__input_type_name'); //поле изменения имени пользователя 
 const inputProfileNameDescription = document.querySelector('.edit-form__input_type_description'); //поле изменения описания пользователя
@@ -24,7 +28,7 @@ const inputProfileAvatar = document.querySelector('edit-form__input-type-linkNew
 const userInfoSelector = { //объект с данными пользователя 
   name: profileNameSelector,
   desc: profileDescriptionSelector,
-  avatar: profileAvatar
+  avatar: profileAvatarSelector
 }
 
 //настройки валидации
@@ -45,11 +49,13 @@ export {
   popupWithImageSelector,
   newCardButton,
   formButtonOpenEdit,
+  profileAvatarElement,
   cardAdd,
   userNameEdit,
   editAvatar,
-  confirmDeleteCard,
-  profileAvatar,
+  confirmDeleteSelector,
+  editAvatarSelector,
+  profileAvatarSelector,
   inputProfileName,
   inputProfileNameDescription,
   inputProfileAvatar,

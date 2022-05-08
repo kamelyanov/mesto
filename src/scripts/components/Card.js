@@ -18,7 +18,7 @@ export default class Card {
     const cardLikeBtn = this._card.querySelector('.card__like');
     const cardlikeCounter = this._card.querySelector('.card__likeCounter');
 
-    if ((!(cardLikeBtn.classList.contains('card__like_active')))) {
+    if (!(cardLikeBtn.classList.contains('card__like_active'))) {
       this._api.like(this._id)
         .then((data) => {
           cardLikeBtn.classList.add('card__like_active')

@@ -1,15 +1,14 @@
-import Popup from './Popup' 
+import Popup from './Popup.js'
 
 export default class PopupConfirm extends Popup {
-  constructor (popup) {
+   constructor (popup) {
     super(popup)
-
     this._form = this._popup.querySelector('.form');
-
-    this._popupBtnSave = this._form.querySelector('.popup__btn-save');
-    this._popupBtnSaveText = this._popupBtnSave.textContent
+    
+    this._popupBtnConfirm = this._form.querySelector('.popup__btn-confirm');
+    this._popupBtnConfirmText = this._popupBtnConfirm.textContent
   }
-
+  
   setEventListeners() {
     super.setEventListeners() 
 
@@ -25,9 +24,9 @@ export default class PopupConfirm extends Popup {
 
   renderLoading(isLoading) {
     if(isLoading) {
-      this._popupBtnSave.textContent = 'Удаление...'
+      this._popupBtnConfirm.textContent = 'Удаление...'
     } else {
-      this._popupBtnSave.textContent = this._popupBtnSaveText
+      this._popupBtnConfirm.textContent = this._popupBtnConfirmText
     }
   }
 }

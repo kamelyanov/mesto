@@ -27,12 +27,12 @@ export default class Popup {
   //открытие попапа
   open() {
     this._popup.classList.add('popup_opened');
-    addEventListener('keydown', this._handleEscClose);
+    document.addEventListener('keydown', this._handleEscClose);
   }
 
   //закрытие попапа
   close() {
     this._popup.classList.remove('popup_opened');
-    removeEventListener('keydown', this._handleEscClose);
+    document.removeEventListener('keydown', this._handleEscClose);
   }
 }

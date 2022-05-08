@@ -4,9 +4,9 @@ import Card from './scripts/components/Card.js';
 import Section from './scripts/components/Section.js';
 import PopupWithImage from './scripts/components/PopupWithImage.js';
 import PopupWithForm from './scripts/components/PopupWithForm.js';
-import PopupConfirm from './scripts/components/PopupConfirm';
+import PopupConfirm from './scripts/components/PopupConfirm.js';
 import UserInfo from './scripts/components/UserInfo.js';
-import Api from './scripts/components/Api';
+import Api from './scripts/components/Api.js';
 
 import {
   cardListSection,
@@ -16,11 +16,13 @@ import {
   popupWithImageSelector,
   newCardButton,
   formButtonOpenEdit,
+  profileAvatarElement,
   cardAdd,
   userNameEdit,
   editAvatar,
-  confirmDeleteCard,
-  profileAvatar,
+  confirmDeleteSelector,
+  editAvatarSelector,
+  profileAvatarSelector,
   inputProfileName,
   inputProfileNameDescription,
   inputProfileAvatar,
@@ -37,41 +39,50 @@ const api = new Api ({
 })
 
 let userId 
-//загрузка карточек, данных пользователя с сервера
-Promise.all([api.getUserInfo(), api.getInitialCards()])
-  .then(([user, cards]) => {
-    userInfo.setUserInfo({
-      name: user.name,
-      desc: user.about,
-      avatar: user.avatar,
-      id: user._id
-    });
-    cardsList.renderItems(cards)
-  })
-  .catch((err) => console.log(err))
 
+//ВАЛИДАЦИЯ
+const formEditProfile = new FormValidator(validationSettings, userNameEdit);
+const cardAddFormValidator = new FormValidator(validationSettings, cardAdd);
+const avatarEditPopupValidator = new FormValidator(validationSettings, editAvatar);
 
-  
+formEditProfile.enableValidation();
+cardAddFormValidator.enableValidation();
+avatarEditPopupValidator.enableValidation();
+
+//ИЗМЕНЕНИЕ ДАННЫХ ПОЛЬЗОВАТЕЛЯ
+const userInfo = new UserInfo(userInfoSelector);
+
+//ПОПАП С КАРТИНКОЙ
+const popupWithImage = new PopupWithImage(popupWithImageSelector);
+popupWithImage.setEventListeners()
+
+//ПОПАП ПОДТВЕРЖДЕНИЯ УДАЛЕНИЯ КАРТОЧКИ 
+const confirmPopup = new PopupConfirm(confirmDeleteSelector)
+confirmPopup.setEventListeners()
+
 //ФУНКЦИЯ СОЗДАНИЯ КАРТОЧКИ 
 const createCard = (data) => {
   const card = new Card(
     data, 
     templateSelector, 
+    
     () => popupWithImage.open(data),
+
     () => {
-      confirmDeleteCardPopup.setSubmitAction
-      confirmDeleteCardPopup.renderLoading
+      confirmPopup.setSubmitAction
+      confirmPopup.renderLoading
       api.deleteCard(data._id)
         .then(() => {
           card.deleteCard()
-          confirmDeleteCardPopup.close()
+          confirmPopup.close()
         })
         .catch((err) => console.log(err))
         .finally(() => {
-          confirmDeleteCardPopup.renderLoading(false)
+          confirmPopup.renderLoading(false)
         })
-      confirmDeleteCardPopup.open()
+        confirmPopup.open()
     }, 
+
     api,
     userId,
   );
@@ -87,9 +98,6 @@ const cardsList = new Section(
   },
   cardListSection
 )
-
-//ИЗМЕНЕНИЕ ДАННЫХ ПОЛЬЗОВАТЕЛЯ
-const userInfo = new UserInfo(userInfoSelector);
 
 //ПОПАП С ИЗМЕНЕНИЕМ ДАННЫХ ПОЛЬЗОВАТЕЛЯ
 const popupEditingUser = new PopupWithForm(popupEditingFormSelector, (formData) => {
@@ -114,24 +122,26 @@ formButtonOpenEdit.addEventListener('click', () => {
 
 popupEditingUser.setEventListeners()
 
-//ПОПАП ИЗМЕНЕНИЯ АВАТАРА
-// const popupEditingUserAvatar = new PopupWithForm(editAvatar, (formData) => {
-//   //editAvatar.renderLoading(true)
-//   api.setUserAvatar(formData)
-//     .then((data) => {
-//       userInfo.setUserInfo(data)
-//   })
-// })
+// ПОПАП ИЗМЕНЕНИЯ АВАТАРА
+const popupEditingUserAvatar = new PopupWithForm(editAvatarSelector, (formData) => {
+  popupEditingUserAvatar.renderLoading(true)
+  api.setUserAvatar(formData)
+  .then((formData) => {
+    userInfo.setUserInfo(formData)
+    popupEditingUserAvatar.close()
+  })
+  .catch((err) => console.log(err))
+  .finally(() => {
+    popupEditingUserAvatar.renderLoading(false)
+  })
+})
 
-// // profileAvatar.addEventListener('click', () => {
-// //   popupEditingUserAvatar.open()
-// //   //avatarEditPopupValidator.checkFormValidity()
-// // })
+profileAvatarElement.addEventListener('click', () => {
+  popupEditingUserAvatar.open()
+  avatarEditPopupValidator.checkFormValidity()
+})
 
-
-// //popupEditingUserAvatar.setEventListeners()
-
-
+popupEditingUserAvatar.setEventListeners()
 
 //ПОПАП С ФОРМОЙ ДОБАВЛЕНИЯ КАРТОЧКИ 
 const popupAddCard = new PopupWithForm(popupCardAddSelector, (formData) => {
@@ -156,22 +166,14 @@ newCardButton.addEventListener('click', () => {
   cardAddFormValidator.checkFormValidity()
 })
 
-//ПОПАП ПОДТВЕРЖДЕНИЯ УДАЛЕНИЯ КАРТОЧКИ 
-const confirmDeleteCardPopup = new PopupConfirm(confirmDeleteCard)
-confirmDeleteCardPopup.setEventListeners()
-
-
-
-
-//ПОПАП С КАРТИНКОЙ
-const popupWithImage = new PopupWithImage(popupWithImageSelector);
-popupWithImage.setEventListeners()
-
-//ВАЛИДАЦИЯ
-const formEditProfile = new FormValidator(validationSettings, userNameEdit);
-const cardAddFormValidator = new FormValidator(validationSettings, cardAdd);
-const avatarEditPopupValidator = new FormValidator(validationSettings, editAvatar);
-
-formEditProfile.enableValidation();
-cardAddFormValidator.enableValidation();
-avatarEditPopupValidator.enableValidation();
+Promise.all([api.getUserInfo(), api.getInitialCards()])
+  .then(([user, cards]) => {
+    userInfo.setUserInfo({
+      name: user.name,
+      desc: user.about,
+      avatar: user.avatar,
+      id: user._id
+    });
+    cardsList.renderItems(cards)
+  })
+  .catch((err) => console.log(err))
