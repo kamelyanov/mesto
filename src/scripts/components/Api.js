@@ -36,7 +36,7 @@ export default class Api {
       headers: this._headers,
       body: JSON.stringify({
         name: data.name,
-        about: data.desc
+        about: data.about
       })
     })
       .then(this._checkResponse)
@@ -55,7 +55,7 @@ export default class Api {
 
   addCard(data) {
     return fetch(`${this._baseUrl}/cards`, {
-      method: 'POST',
+      method: "POST",
       headers: this._headers,
       body: JSON.stringify({
         name: data.name,
@@ -65,24 +65,24 @@ export default class Api {
     .then(this._checkResponse)
   }
 
-  deleteCard(cardId) {
-    return fetch (`${this._baseUrl}/cards/${cardId}`, {
+  deleteCard(id) {
+    return fetch (`${this._baseUrl}/cards/${id}`, {
       method: 'DELETE',
       headers: this._headers,
     })
     .then(this._checkResponse)
   }
 
-  like(cardId) {
-    return fetch(`${this._baseUrl}/cards/likes/${cardId}`, {
+  like(id) {
+    return fetch(`${this._baseUrl}/cards/likes/${id}`, {
       method: 'PUT',
       headers: this._headers 
     })
     .then(this._checkResponse)
   }
 
-  deleteLike(cardId) {
-    return fetch(`${this._baseUrl}/cards/likes/${cardId}`, {
+  deleteLike(id) {
+    return fetch(`${this._baseUrl}/cards/likes/${id}`, {
       method: 'DELETE',
       headers: this._headers 
     })

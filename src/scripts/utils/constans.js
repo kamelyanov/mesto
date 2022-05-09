@@ -27,7 +27,7 @@ const inputProfileAvatar = document.querySelector('edit-form__input-type-linkNew
 
 const userInfoSelector = { //объект с данными пользователя 
   name: profileNameSelector,
-  desc: profileDescriptionSelector,
+  about: profileDescriptionSelector,
   avatar: profileAvatarSelector
 }
 

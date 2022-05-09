@@ -22,10 +22,8 @@ import {
   editAvatar,
   confirmDeleteSelector,
   editAvatarSelector,
-  profileAvatarSelector,
   inputProfileName,
   inputProfileNameDescription,
-  inputProfileAvatar,
   userInfoSelector,
   validationSettings,
 } from './scripts/utils/constans.js';
@@ -37,6 +35,14 @@ const api = new Api ({
     'Content-Type': 'application/json'
 }
 })
+
+Promise.all([api.getUserInfo(), api.getInitialCards()])
+  .then(([user, cards]) => {
+    userInfo.setUserInfo(user);
+    cardsList.renderItems(cards);
+    userId = user._id;
+  })
+  .catch((err) => console.log(err))
 
 let userId 
 
@@ -67,22 +73,21 @@ const createCard = (data) => {
     templateSelector, 
     
     () => popupWithImage.open(data),
-
+    () => card.toggleLikes(),    
     () => {
-      confirmPopup.setSubmitAction
-      confirmPopup.renderLoading
-      api.deleteCard(data._id)
-        .then(() => {
-          card.deleteCard()
-          confirmPopup.close()
-        })
-        .catch((err) => console.log(err))
-        .finally(() => {
-          confirmPopup.renderLoading(false)
-        })
-        confirmPopup.open()
-    }, 
-
+      confirmPopup.setSubmitAction(() => {
+        confirmPopup.renderLoading(true)
+        api.deleteCard(data._id)
+          .then( _ => {
+            card.deleteCard()
+            confirmPopup.close()
+          })
+          .catch((err) => console.log(err))
+          .finally( _ => confirmPopup.renderLoading(false))
+      })
+      confirmPopup.open()
+    },
+    
     api,
     userId,
   );
@@ -113,14 +118,16 @@ const popupEditingUser = new PopupWithForm(popupEditingFormSelector, (formData) 
   })
 })
 
+popupEditingUser.setEventListeners()
+
 formButtonOpenEdit.addEventListener('click', () => {
   inputProfileName.value = userInfo.getUserInfo().name
-  inputProfileNameDescription.value = userInfo.getUserInfo().desc
+  inputProfileNameDescription.value = userInfo.getUserInfo().about
   popupEditingUser.open()
   formEditProfile.checkFormValidity()
 })
 
-popupEditingUser.setEventListeners()
+
 
 // ПОПАП ИЗМЕНЕНИЯ АВАТАРА
 const popupEditingUserAvatar = new PopupWithForm(editAvatarSelector, (formData) => {
@@ -147,8 +154,8 @@ popupEditingUserAvatar.setEventListeners()
 const popupAddCard = new PopupWithForm(popupCardAddSelector, (formData) => {
   popupAddCard.renderLoading(true)
   api.addCard(formData)
-  .then((formData) => {
-    const card = createCard(formData);
+  .then((data) => {
+    const card = createCard(data);
     const cardElement = card.renderNewCard()
     cardsList.setItem(cardElement);
     popupAddCard.close();
@@ -166,14 +173,4 @@ newCardButton.addEventListener('click', () => {
   cardAddFormValidator.checkFormValidity()
 })
 
-Promise.all([api.getUserInfo(), api.getInitialCards()])
-  .then(([user, cards]) => {
-    userInfo.setUserInfo({
-      name: user.name,
-      desc: user.about,
-      avatar: user.avatar,
-      id: user._id
-    });
-    cardsList.renderItems(cards)
-  })
-  .catch((err) => console.log(err))
+
