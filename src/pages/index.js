@@ -1,12 +1,12 @@
 import "./index.css";
-import FormValidator from './scripts/components/FormValidator.js';
-import Card from './scripts/components/Card.js';
-import Section from './scripts/components/Section.js';
-import PopupWithImage from './scripts/components/PopupWithImage.js';
-import PopupWithForm from './scripts/components/PopupWithForm.js';
-import PopupConfirm from './scripts/components/PopupConfirm.js';
-import UserInfo from './scripts/components/UserInfo.js';
-import Api from './scripts/components/Api.js';
+import FormValidator from '../scripts/components/FormValidator.js';
+import Card from '../scripts/components/Card.js';
+import Section from '../scripts/components/Section.js';
+import PopupWithImage from '../scripts/components/PopupWithImage.js';
+import PopupWithForm from '../scripts/components/PopupWithForm.js';
+import PopupConfirm from '../scripts/components/PopupConfirm.js';
+import UserInfo from '../scripts/components/UserInfo.js';
+import Api from '../scripts/components/Api';
 
 import {
   cardListSection,
@@ -26,7 +26,7 @@ import {
   inputProfileNameDescription,
   userInfoSelector,
   validationSettings,
-} from './scripts/utils/constans.js';
+} from '../scripts/utils/constans.js';
 
 const api = new Api ({
   baseUrl: 'https://mesto.nomoreparties.co/v1/cohort-40',

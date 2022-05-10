@@ -15,11 +15,7 @@ export default class Api {
     return fetch(`${this._baseUrl}/cards`, {
       headers: this._headers
     })
-      .then(res => {
-        if (res.ok) {
-          return res.json();
-        }
-      });
+    .then(this._checkResponse)
   }
 
   getUserInfo() {

@@ -13,12 +13,10 @@ export default class Card {
     this._id = data._id;
     this._ownerId = data.owner._id;
     this._userId = userId;
+
   }
 
-  toggleLikes() {
-    this._cardLikeBtn = this._card.querySelector('.card__like');
-    this._cardlikeCounter = this._card.querySelector('.card__likeCounter');
-    
+  toggleLikes() {   
     if (!(this._cardLikeBtn.classList.contains('card__like_active'))) {
       this._api.like(this._id)
         .then((data) => {
@@ -46,10 +44,8 @@ export default class Card {
 
   _setEventListeners() {
     this._cardImage.addEventListener('click', this._handleCardClick);
-    this._cardLikeBtn = this._card.querySelector('.card__like');
     this._cardLikeBtn.addEventListener('click', this._handleCardLike);
-    this._cardDeleteButton = this._card.querySelector('.card__delete');
-    this._cardDeleteButton.addEventListener('click', this._handleConfirmDeleteCard);
+     this._cardDeleteButton.addEventListener('click', this._handleConfirmDeleteCard);
   }
 
   _getElement() {
@@ -62,8 +58,11 @@ export default class Card {
 
   renderNewCard() {
     this._getElement();
-      
+            
+    this._cardDeleteButton = this._card.querySelector('.card__delete');  
+    this._cardLikeBtn = this._card.querySelector('.card__like');
     this._cardlikeCounter = this._card.querySelector('.card__likeCounter');
+
     this._cardlikeCounter.textContent = this._likes.length;
 
     this._cardImage = this._card.querySelector('.card__photo');
@@ -75,11 +74,11 @@ export default class Card {
     
     
     if (this._ownerId !== this._userId) {
-      this._card.querySelector('.card__delete').style.display = 'none'
+      this._cardDeleteButton.style.display = 'none'
     }
     
     if(this._likes.some((obj) => this._userId == obj._id)) {
-      this._card.querySelector('.card__like').classList.add('card__like_active')
+      this._cardLikeBtn.classList.add('card__like_active')
     }
        
     this._setEventListeners();
